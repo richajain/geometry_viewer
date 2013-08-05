@@ -1,24 +1,24 @@
 <?php
  
-/* If upload complete following variable will hold 1, otherwise 0. */
+/* Following variable will 
+ * hold 1, if upload completes, 
+ * 2  if file already exists, 
+ * otherwise 0. */
 $uploadComplete = 0;
 
 if ($_FILES["file"]["error"] > 0) {
     echo "Error: " . $_FILES["file"]["error"] . "<br>";
-    $uploadcomplete = 0;
+    $uploadComplete = 0;
 } else if (file_exists("upload/" . $_FILES["file"]["name"])) {
-    echo $_FILES["file"]["name"] . " already exists. ";
-    $uploadcomplete = 0;
+//    echo $_FILES["file"]["name"] . " already exists. ";
+    $uploadComplete = 2;
 } else {
     move_uploaded_file($_FILES["file"]["tmp_name"],
     "upload/" . $_FILES["file"]["name"]);
 //    echo "File Name: " . $_FILES["file"]["name"] . "<br>";
 //    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-    $uploadcomplete = 1;
+    $uploadComplete = 1;
 }
-
-/* Number of entities to be displayed directly after upload */
-$n = 5;
 
 /* Holds the names of entities that to be displayed. variable is passed to
  * WebGL through header */
@@ -56,6 +56,14 @@ $list = explode(" ", $out);
 /* Counting total number of entities */
 $totalEntities = count($list) - 2;
 
+/* Number of entities to be displayed directly after upload */
+
+if ($totalEntities < 5) {
+	$n = $totalEntities;
+} else {
+	$n = 5;
+}
+
 /* Display list of entities on browser */
 function displayList($dbFileName, $uploadPath, $totalEntities, $list)
 {
@@ -64,9 +72,9 @@ function displayList($dbFileName, $uploadPath, $totalEntities, $list)
         if($list[$i] == "_GLOBAL") {
             $i = $i + 1;
             $totalEntties = $totalEntities + 1;
-//            echo "$i ". $list[$i]. "<br>";
+            echo "$i ". $list[$i]. "<br>";
         } else {
-//            echo "$i ". $list[$i]. "<br>";
+            echo "$i ". $list[$i]. "<br>";
         }
     }
 }
@@ -84,10 +92,9 @@ function createOBJ($dbFileName, $dbFilePreffix, $entity, $uploadPath, $objPath)
 
 /* If file already exits, upload fails and models of entities of pre existing
  * file are displayed */
-if ($uploadcomplete == '0') {
-//    displayList($dbFileName, $uploadPath, $totalEntities, $list);
+if ($uploadComplete == '2') {
+//	displayList($dbFileName, $uploadPath, $totalEntities, $list);
 
- //   echo $redirectionData;
     for ($i = 0; $i < $n; $i++) {
         if($list[$i] == "_GLOBAL") {
             $i = $i + 1;
@@ -99,26 +106,24 @@ if ($uploadcomplete == '0') {
 	    $redirectionData = $redirectionData."|".$objN;
 	}
     }
-    header('Location: model_display.php?obj='.$redirectionData);
-
-} else {
-
-//    displayList($dbFileName, $uploadPath, $totalEntities, $list); 
-//    echo $redirectionData;
-    for ($i = 0; $i < $n; $i++) {
-        if($list[$i] == "_GLOBAL") {
-            $i = $i + 1;
-            $n = $n + 1;
-            createOBJ($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
-	    $objN = $objPath.$dbFilePreffix."_".$list[$i].".obj";
-	    $redirectionData = $redirectionData."|".$objN;
-	} else {
-            createOBJ($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
-	    $objN = $objPath.$dbFilePreffix."_".$list[$i].".obj";    
-	    $redirectionData = $redirectionData."|".$objN;
-	}
-    }
+       header('Location: model_display.php?obj='.$redirectionData);
     
+
+} else if ($uploadComplete == '1') {
+//    displayList($dbFileName, $uploadPath, $totalEntities, $list); 
+    for ($i = 0; $i < $n; $i++) {
+        if($list[$i] == "_GLOBAL") {
+            $i = $i + 1;
+            $n = $n + 1;
+            createOBJ($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
+	    $objN = $objPath.$dbFilePreffix."_".$list[$i].".obj";
+	    $redirectionData = $redirectionData."|".$objN;
+	} else {
+            createOBJ($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
+	    $objN = $objPath.$dbFilePreffix."_".$list[$i].".obj";    
+	    $redirectionData = $redirectionData."|".$objN;
+	}
+    }
 //    $objN = $objPath.$dbFilePreffix."_".$list[3].".obj";
     header('Location: model_display.php?obj='.$redirectionData);
 }
