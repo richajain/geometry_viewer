@@ -1,4 +1,27 @@
 <?php
+/*                    F U N C T I O N S . P H P
+ * BRL-CAD
+ *
+ * Copyright (c) 1995-2013 United States Government as represented by
+ * the U.S. Army Research Laboratory.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * version 2.1 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this file; see the file named COPYING for more
+ * information.
+ */
+/** @file geometry_viewer/functions.php
+ *
+ */
+
     include 'variables.php';
 
     /** 
@@ -25,13 +48,15 @@
      * 
      * Create OBJ files  
      */
-    function create_obj($dbFileName, $dbFilePreffix, $entity, $uploadPath, $objPath)
+    function create_obj($dbFileName, $entity, $uploadPath, $objPath)
     {
-    $gobj = "/usr/brlcad/dev-7.24.1/bin/g-obj -n 10 -o $objPath$dbFilePreffix\_$entity.obj $uploadPath$dbFileName $entity";
+        $success = "$entity.obj";
+        $fail = "fail";
+        $gobj = "/usr/brlcad/dev-7.24.1/bin/g-obj -n 10 -o $objPath$entity.obj $uploadPath$dbFileName $entity";
         if (!shell_exec($gobj)) {
-            echo "$gobj: error!!!<br>";
+            echo $fail;
         } else {
-        /**  echo "$gobj: Success<br>"; */
+            echo $success;
         }
     }
 ?>

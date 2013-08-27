@@ -1,4 +1,27 @@
 <?php
+/*                 U P L O A D _ F I L E . P H P
+ * BRL-CAD
+ *
+ * Copyright (c) 1995-2013 United States Government as represented by
+ * the U.S. Army Research Laboratory.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * version 2.1 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this file; see the file named COPYING for more
+ * information.
+ */
+/** @file geometry_viewer/upload_file.php
+ *
+ */
+
     include 'functions.php';
 
     /** 
@@ -80,7 +103,7 @@
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    }
         }
-        header('Location: model_display.php?obj='.$redirectionData);
+        header('Location: model_display.php?entitiesString='.urlencode($out).'&dbFileName='.urlencode($dbFileName));
     } else if ($uploadComplete == '1') {
         for ($i = 0; $i < $n; $i++) {
             if ($list[$i] == "_GLOBAL") {
@@ -95,6 +118,6 @@
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    }       
         }
-        header('Location: model_display.php?obj='.$redirectionData);
+        header('Location: model_display.php?entitiesString='.urlencode($out).'&dbFileName='.urlencode($dbFileName));
     }
 ?>

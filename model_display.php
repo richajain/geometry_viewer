@@ -1,3 +1,28 @@
+<?php
+/*                M O D E L _ D I S P L A Y . P H P
+ * BRL-CAD
+ *
+ * Copyright (c) 1995-2013 United States Government as represented by
+ * the U.S. Army Research Laboratory.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * version 2.1 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this file; see the file named COPYING for more
+ * information.
+ */
+/** @file geometry_viewer/model_display.php
+ *
+ */
+?>
+
 <!doctype html>
 <html lang = "en">
     <head>
@@ -25,7 +50,7 @@
 
 	    /** custom global variables */
 	    var entitiesInScene = new Array();
-	    var objEntitiesIndex;
+	    var objEntitiesIndex, dbFileName;
 
 
             /**
@@ -106,7 +131,7 @@
                 /** material of OBj model */
                 var OBJMaterial = new THREE.MeshPhongMaterial({color: 0x8888ff});
                 var loader = new THREE.OBJLoader();
-                loader.load(objFile, function (objFile){
+                loader.load("obj/"+objFile, function (objFile){
         	        objFile.traverse (function (child){
                         if (child instanceof THREE.Mesh) {
                             child.material = OBJMaterial;
@@ -127,7 +152,11 @@
              */
             function add_entity(entity) 
             {
-                single_obj_loader(entity);
+                $.post('create_obj.php', {db: dbFileName, en: entity}, function(data) {
+                    if (data == entity+".obj"){               
+                        single_obj_loader(data);
+                    }                                     
+                });     
             }
 
 
@@ -138,7 +167,7 @@
              */
             function delete_entity(entity) 
             {
-                var rmElementIndex = entitiesInScene.indexOf(entity);
+                var rmElementIndex = entitiesInScene.indexOf(entity+".obj");
                 if (rmElementIndex != '-1') { 
                     entitiesInScene.splice(rmElementIndex, 1);			
                     rmElement = scene.children[rmElementIndex - 1];
@@ -256,11 +285,20 @@
 
                 /** Receive data from URL. */
                 <?php 
-                    echo "var i = '".$_GET['obj']."'"; 
+                  //  echo "var i = '".$_GET['obj']."'";
+                  //  echo "var f = '".$_GET['dbFileName']."'";
                 ?>
-                        
-                    var entitiesList = new Array();
-                    entitiesList = i.split("|");
+                
+                <?php
+                $entitiesString = $_GET['entitiesString'];
+                $dbFileName = $_GET['dbFileName'];
+                ?>
+
+                var entitiesString  = <?php echo json_encode($entitiesString); ?>; 
+                dbFileName = <?php echo json_encode($dbFileName); ?>;  
+
+                var entitiesList = new Array();
+                entitiesList = entitiesString.split(" ");
 
                 var totalEntities = entitiesList.length;
 
