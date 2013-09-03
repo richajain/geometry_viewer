@@ -65,7 +65,11 @@
                 $createObjDir = "mkdir ../user_accounts/$username/obj";
                 shell_exec($createUserDir);
                 shell_exec($createObjDir);
-		
+                
+            echo "<br><button type=\"submit\" class=\"btn btn-success\" id=\"right\" 
+            name=\"sign_in\" onClick=\"window.location='login.php'\">
+            Sign In </button>";
+
 	    } else {
 		echo "The user could not be updated Reason: ".mysql_error();
 	    }
