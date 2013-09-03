@@ -52,11 +52,18 @@
     {
         $success = "$entity.obj";
         $fail = "fail";
-        $gobj = "/usr/brlcad/dev-7.24.1/bin/g-obj -n 10 -o $objPath$entity.obj $uploadPath$dbFileName $entity";
+        $gobj = "/usr/brlcad/dev-7.24.1/bin/g-obj -n 10 -o $objPath/$entity.obj $uploadPath/$dbFileName $entity";
         if (!shell_exec($gobj)) {
             echo $fail;
         } else {
             echo $success;
         }
     }
+/*                                                                    
+ * Local Variables:                                                   
+ * mode: PHP                                                            
+ * tab-width: 8
+ * End:                                                               
+ * ex: shiftwidth=4 tabstop=8                                         
+ */
 ?>

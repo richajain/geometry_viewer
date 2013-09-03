@@ -33,11 +33,11 @@
     if ($_FILES["file"]["error"] > 0) {
         echo "Error: " . $_FILES["file"]["error"] . "<br>";
         $uploadComplete = 0;
-    } else if (file_exists("upload/" . $_FILES["file"]["name"])) {
+    } else if (file_exists("$uploadPath/" . $_FILES["file"]["name"])) {
     $uploadComplete = 2;
     } else {
         move_uploaded_file($_FILES["file"]["tmp_name"],
-        "upload/" . $_FILES["file"]["name"]);
+        "$uploadPath/" . $_FILES["file"]["name"]);
         $uploadComplete = 1;
     }
 
@@ -64,11 +64,11 @@
      * Command that lists the entities of a BRL-CAD database file is 
      * copied into a variable 
      */
-    $cmd = "env /usr/brlcad/dev-7.24.1/bin/mged -c $uploadPath$dbFileName ls -a 2>&1";
+    $cmd = "env /usr/brlcad/dev-7.24.1/bin/mged -c $uploadPath/$dbFileName ls -a 2>&1";
 
     /** Output of command is stored into variable as string */
     $out = shell_exec($cmd);
-    
+
     /** 
      * Spliting the stirng and storing names of entities 
      * into array 
@@ -109,15 +109,22 @@
             if ($list[$i] == "_GLOBAL") {
                 $i = $i + 1;
                 $n = $n + 1;
-                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
+//                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    } else {
-                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
+//                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";    
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    }       
         }
         header('Location: model_display.php?entitiesString='.urlencode($out).'&dbFileName='.urlencode($dbFileName));
     }
+/*                                                                    
+ * Local Variables:                                                   
+ * mode: PHP                                                            
+ * tab-width: 8
+ * End:                                                               
+ * ex: shiftwidth=4 tabstop=8                                         
+ */
 ?>

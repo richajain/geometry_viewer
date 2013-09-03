@@ -21,6 +21,8 @@
 /** @file geometry_viewer/model_display.php
  *
  */
+
+include 'variables.php';
 ?>
 
 <!doctype html>
@@ -31,6 +33,7 @@
         <meta name = "viewport" content = "width = device-width, 
         user-scalable = no, minimum-scale = 1.0, maximum-scale = 1.0">
 	<link rel = stylesheet href = "css/base.css"/>
+	<link rel = stylesheet href = "css/bootstrap.min.css"/>
     </head>
     <body>
 	<script src = "js/three.min.js"></script>
@@ -40,8 +43,17 @@
 	<script src = "js/OrbitControls.js"></script>
 	<script src = "js/THREEx.FullScreen.js"></script>
 	<script src = "js/THREEx.WindowResize.js"></script>
-	<script src = "js/jquery-1.10.2.min.js"></script>
+        <script src = "js/jquery-1.10.2.min.js"></script>
+        
+        <div id="top-bar">
+            <img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png">
+            <legend>You are logged in as: <?php echo 
+            $username; ?> | <a href="accounts/logout.php">Logout</a>
+            </legend>
+        </div>
+        
         <div id = "ThreeJS"></div>
+
 	<script>
 
 	    /** standard global variables */
@@ -51,6 +63,7 @@
 	    /** custom global variables */
 	    var entitiesInScene = new Array();
 	    var objEntitiesIndex, dbFileName;
+            var objPath  = <?php echo json_encode($objPath); ?>; 
 
 
             /**
@@ -131,7 +144,7 @@
                 /** material of OBj model */
                 var OBJMaterial = new THREE.MeshPhongMaterial({color: 0x8888ff});
                 var loader = new THREE.OBJLoader();
-                loader.load("obj/"+objFile, function (objFile){
+                loader.load(objPath+"/"+objFile, function (objFile){
         	        objFile.traverse (function (child){
                         if (child instanceof THREE.Mesh) {
                             child.material = OBJMaterial;
@@ -305,17 +318,17 @@
                 /** Creates left side bar to display list of 
                  * entities, each entity having corresponding pair of
                  * "view" and "delete" button. */    
-		document.write("<div id = \"leftSideBar\">Entities:");
-                    for (var h = 0; h < totalEntities; h++) {
+		document.write("<div id = \"leftSideBar\"><table><th>Entities:</th>");
+                    for (var h = 0; h < totalEntities-1; h++) {
                         if (entitiesList[h] == "_GLOBAL") {
                         h = h + 1;
-	    	    document.write(entitiesList[h]+"    <a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</a>"+"    <a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide<br></a>");
+	    	    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</td></a>"+"    <td><a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide</a></td></tr>");
                         } else {
-                    document.write(entitiesList[h]+"    <a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</a>"+"    <a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide<br></a>");
+                    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</td></a>"+"   <td><a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide</a></td></tr>");
                      
                         }
                     }
-		document.write("</div>");
+		document.write("</table></div>");
             }
 
             /** initialization */
@@ -327,3 +340,13 @@
         </script>
     </body>
 </html>
+
+<?php
+/*                                                                    
+ * Local Variables:                                                   
+ * mode: PHP                                                            
+ * tab-width: 8
+ * End:                                                               
+ * ex: shiftwidth=4 tabstop=8                                         
+ */
+?>

@@ -28,5 +28,12 @@
     $entity = $_POST['en'];
 
     create_obj($dbFileName, $entity, $uploadPath, $objPath);
-
+    
+/*                                                                    
+ * Local Variables:                                                   
+ * mode: PHP                                                            
+ * tab-width: 8
+ * End:                                                               
+ * ex: shiftwidth=4 tabstop=8                                         
+ */
 ?>

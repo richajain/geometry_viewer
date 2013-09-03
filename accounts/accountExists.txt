@@ -1,0 +1,14 @@
+                $result_check_credentials = mysql_query("SELECT * FROM `users` WHERE (email='$email' OR username='$username')");
+                                                                      
+                       if(!$result_check_credentials) {               
+                            echo 'Unable to search database to check whether user already exists';
+                        }                                             
+                                                                      
+                       else if (mysql_num_rows($result_check_credentials) != 0)
+                       {                                              
+                            while($row = mysql_fetch_array($result_check_credentials)) {
+                        if ($row['email'] == $email AND $row['username'] == $username) {
+                            header('Location: index.php?userExists=yes');
+                        }                                             
+                                                                      
+                       else {    
