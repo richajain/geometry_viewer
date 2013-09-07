@@ -151,6 +151,8 @@ include 'variables.php';
             	    }
         	        });
                     objFile.position.y = 0.1;
+                    objFile.rotation.z = 90 * Math.PI/180;
+                    objFile.rotation.x = -90 * Math.PI/180;
                     scene.add(objFile);
                     objEntitiesIndex = scene.children.length;	
                     entitiesInScene[objEntitiesIndex] = entityName;
