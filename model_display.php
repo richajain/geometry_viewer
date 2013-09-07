@@ -142,7 +142,7 @@ include 'variables.php';
             {
                 var entityName = objFile;
                 /** material of OBj model */
-                var OBJMaterial = new THREE.MeshPhongMaterial({color: 0x8888ff});
+                var OBJMaterial = new THREE.MeshPhongMaterial({color: Math.random() * 0xffffff});
                 var loader = new THREE.OBJLoader();
                 loader.load(objPath+"/"+objFile, function (objFile){
         	        objFile.traverse (function (child){

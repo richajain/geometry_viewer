@@ -24,5 +24,5 @@
 
     /* connect to the database */
     mysql_connect('localhost', 'mysql_username', 'password') or die("Unable to connect to the database, please make sure your MySQL username and / or password is correct!");
-    mysql_select_db('sign_up') or die("Unable to find database table ($table).");
+    mysql_select_db('database_name') or die("Unable to find database table ($table).");
 ?>
