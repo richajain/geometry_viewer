@@ -34,7 +34,7 @@
 <?php
     include_once 'inc/php/config.php';
 
-    $siteUrl = 'http://localhost/~harmanpreet/';
+    $siteUrl = 'http://site-url/';
     $subject = 'Confirmation Link';
     $senderEmail = 'yourGmailAccount@gmail.com';
     $senderName = 'Online Geometry Viewer';

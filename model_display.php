@@ -298,12 +298,11 @@ include 'variables.php';
 		var axes = new THREE.AxisHelper(10000);
 		scene.add(axes);
 
-                /** Receive data from URL. */
-                <?php 
-                  //  echo "var i = '".$_GET['obj']."'";
-                  //  echo "var f = '".$_GET['dbFileName']."'";
-                ?>
-                
+                /** Grid */
+                var grid = new THREE.GridHelper(300, 10);
+                scene.add(grid); 
+
+                /** Receive data from URL. */                
                 <?php
                 $entitiesString = $_GET['entitiesString'];
                 $dbFileName = $_GET['dbFileName'];
