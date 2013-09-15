@@ -66,6 +66,12 @@ include 'variables.php';
              * keyboard shorcut keys to see dofferent views of model */
             var keyboard = new KeyboardState();
 
+            /** 
+             * global obj model array, used to apply wireframe/shade 
+             * to models.   
+             */
+            var objGlobalObject = [];
+
 	    /** custom global variables */
 	    var entitiesInScene = new Array();
 	    var objEntitiesIndex, dbFileName;
@@ -91,20 +97,50 @@ include 'variables.php';
                 keyboard.update();
 
                 /* keyboard options to see different views of model */
-                if ( keyboard.down("T") ) {
+                if (keyboard.down("T")) {
                     camera.position.set(0, 100, 0);
                 }
 
-                if ( keyboard.down("R") ) {
+                if (keyboard.down("R")) {
                     camera.position.set(0, 0, 100);
                 }
 
-                if ( keyboard.down("B") ) {
+                if (keyboard.down("B")) {
                     camera.position.set(0, -100, 0);
                 }
 
-                if ( keyboard.down("L") ) {
+                if (keyboard.down("L")) {
                     camera.position.set(100, 0, 0);
+                }
+
+                /** 
+                 * if "W" is pressed, wireframe applied to all models 
+                 * in the scene. 
+                 */
+                if (keyboard.down("W")) {
+                    var OBJMaterial = new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true});
+                    for (var i = 0; i < objGlobalObject.length; i++) {
+                        objGlobalObject[i].traverse (function (child) {
+                            if (child instanceof THREE.Mesh) {
+                                child.material = OBJMaterial;
+                            }
+                        });
+                    }
+                }
+
+                /** 
+                 * if "S" is pressed, shade applied to all models 
+                 * in the scene. 
+                 */
+                if (keyboard.down("S")) {
+                    var OBJMaterial = new THREE.MeshPhongMaterial({color: Math.random() * 0xffffff});
+                    for (var i = 0; i < objGlobalObject.length; i++) {
+                        objGlobalObject[i].traverse (function (child){
+                            if (child instanceof THREE.Mesh) {
+                                child.material = OBJMaterial;
+                            }
+                        });
+                    }
                 }
 
                 controls.update();
@@ -166,24 +202,29 @@ include 'variables.php';
             function single_obj_loader(objFile)
             {
                 var entityName = objFile;
-                /** material of OBj model */
-                var OBJMaterial = new THREE.MeshPhongMaterial({color: Math.random() * 0xffffff});
+              
+                /** 
+                 * Applying material to OBJ model. By default, 
+                 * wireframe will be applied.
+                 */
+                var OBJMaterial = new THREE.MeshPhongMaterial({color: 0x000000, wireframe: true});
                 var loader = new THREE.OBJLoader();
-                loader.load(objPath+"/"+objFile, function (objFile){
-        	        objFile.traverse (function (child){
+                loader.load(objPath+"/"+objFile, function (object){
+                    objGlobalObject.push(object);
+        	        object.traverse (function (child){
                         if (child instanceof THREE.Mesh) {
                             child.material = OBJMaterial;
             	    }
         	        });
-                    objFile.position.y = 0.1;
+                    object.position.y = 0.1;
                         /** 
                          * By default, models appear tilted(one side 
                          * raised). So rotating model to make them 
                          * appear horizontally.
                          * */
-                    objFile.rotation.z = 90 * Math.PI/180;
-                    objFile.rotation.x = -90 * Math.PI/180;
-                    scene.add(objFile);
+                    object.rotation.z = 90 * Math.PI/180;
+                    object.rotation.x = -90 * Math.PI/180;
+                    scene.add(object);
                     objEntitiesIndex = scene.children.length;	
                     entitiesInScene[objEntitiesIndex] = entityName;
                 });
