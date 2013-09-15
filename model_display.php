@@ -42,7 +42,8 @@ include 'variables.php';
 	<script src = "js/loaders/OBJLoader.js"></script>
 	<script src = "js/OrbitControls.js"></script>
 	<script src = "js/THREEx.FullScreen.js"></script>
-	<script src = "js/THREEx.WindowResize.js"></script>
+        <script src = "js/THREEx.WindowResize.js"></script>
+        <script src = "js/KeyboardState.js"></script>
         <script src = "js/jquery-1.10.2.min.js"></script>
         
         <div id="top-bar">
@@ -58,7 +59,12 @@ include 'variables.php';
 
 	    /** standard global variables */
 	    var container, scene, camera, renderer, controls, stats;
-	    var clock = new THREE.Clock();
+            var clock = new THREE.Clock();
+            
+            /** 
+             * creating object of KeyboardState() to implement
+             * keyboard shorcut keys to see dofferent views of model */
+            var keyboard = new KeyboardState();
 
 	    /** custom global variables */
 	    var entitiesInScene = new Array();
@@ -82,6 +88,25 @@ include 'variables.php';
              */
             function update()
             {	
+                keyboard.update();
+
+                /* keyboard options to see different views of model */
+                if ( keyboard.down("T") ) {
+                    camera.position.set(0, 100, 0);
+                }
+
+                if ( keyboard.down("R") ) {
+                    camera.position.set(0, 0, 100);
+                }
+
+                if ( keyboard.down("B") ) {
+                    camera.position.set(0, -100, 0);
+                }
+
+                if ( keyboard.down("L") ) {
+                    camera.position.set(100, 0, 0);
+                }
+
                 controls.update();
                 stats.update();
             }
@@ -151,6 +176,11 @@ include 'variables.php';
             	    }
         	        });
                     objFile.position.y = 0.1;
+                        /** 
+                         * By default, models appear tilted(one side 
+                         * raised). So rotating model to make them 
+                         * appear horizontally.
+                         * */
                     objFile.rotation.z = 90 * Math.PI/180;
                     objFile.rotation.x = -90 * Math.PI/180;
                     scene.add(objFile);
@@ -167,6 +197,14 @@ include 'variables.php';
              */
             function add_entity(entity) 
             {
+                /** 
+                 * Sending AJAX request to create_obj.php to create 
+                 * obj file for a model(to fulfil user's "view" button 
+                 * click request). If sent request served successfully, 
+                 * receiving name of obj file in 'data' variable in 
+                 * response from create_obj.php and passing it 
+                 * to single_obj)loader() to load it to ThreeJS scene.
+                 * */
                 $.post('create_obj.php', {db: dbFileName, en: entity}, function(data) {
                     if (data == entity+".obj"){               
                         single_obj_loader(data);
@@ -218,7 +256,7 @@ include 'variables.php';
 		/** set up camera */
 		camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
 
-		/** add the camera to the scene */
+		/** add camera to the scene */
 		scene.add(camera);
 
                 /** 
@@ -279,15 +317,12 @@ include 'variables.php';
 			
 		/** adding lights to scene */
 		var light = new THREE.PointLight(0xffffff);
-		light.position.set(0, 250, 0);
+		light.position = camera.position;
 		scene.add(light);
 
 		var ambientLight = new THREE.AmbientLight(0x111111);
 		scene.add(ambientLight);
 
-	        var directionalLight = new THREE.DirectionalLight(0xffeedd);
-		directionalLight.position.set(1000, 1000, 1000);
-                scene.add(directionalLight);
 
 		/** Geometry */
 			
@@ -302,7 +337,10 @@ include 'variables.php';
                 var grid = new THREE.GridHelper(300, 10);
                 scene.add(grid); 
 
-                /** Receive data from URL. */                
+                /** 
+                 * Receive data from URL using GET method.
+                 * TODO: Should use POST method. 
+                 * */
                 <?php
                 $entitiesString = $_GET['entitiesString'];
                 $dbFileName = $_GET['dbFileName'];
@@ -318,7 +356,11 @@ include 'variables.php';
 
                 /** Creates left side bar to display list of 
                  * entities, each entity having corresponding pair of
-                 * "view" and "delete" button. */    
+                 * "view" and "delete" button. 
+                 *
+                 * TODO: Clean it.
+                 *
+                 * */ 
 		document.write("<div id = \"leftSideBar\"><table><th>Entities:</th>");
                     for (var h = 0; h < totalEntities-1; h++) {
                         if (entitiesList[h] == "_GLOBAL") {

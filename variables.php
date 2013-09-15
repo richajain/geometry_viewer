@@ -24,10 +24,11 @@
 
 include 'accounts/auth.php';
 
-    /* Path of directory where uploaded file get stored */
-    $uploadPath = "user_accounts/$username";
-    /* Path of directory where OBJ files stored */
-    $objPath = "user_accounts/$username/obj";
+/* Path of directory where uploaded file get stored */
+$uploadPath = "user_accounts/$username";
+
+/* Path of directory where OBJ files stored */
+$objPath = "user_accounts/$username/obj";
     
 /*                                                                    
  * Local Variables:                                                   
