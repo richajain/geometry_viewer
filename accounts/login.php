@@ -47,6 +47,10 @@
             body {
                 background-color:#F2F2F2;
             }
+
+            #login-form {
+            margin-left: 38%;
+            }
         </style>
 	
     </head>
@@ -102,11 +106,11 @@
                 }
             }
         ?>
-
+        
+        <legend style="text-align: center">Sign In</legend>        
         <form method="post" action="" class="form-horizontal" 
-        role="form">
+        role="form" id="login-form">
             <fieldset>
-                <legend>Sign In</legend>        
                     <div class="form-group">
                         <label class="col-lg-1 control-label" 
                         for="email">Email:</label>
@@ -129,10 +133,10 @@
                     </div>
     		        
 
-                    <div class="col-lg-1">
+                    <div>
     		        <input type="submit" value="Sign in" 
                         class="btn btn-primary" name="sign_in" 
-                        style="width: 250px;"/>			
+                        style="width: 322px;"/>			
                     </div>
             </fieldset>    
         </form>			

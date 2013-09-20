@@ -43,7 +43,7 @@ include 'accounts/auth.php';
     </head>
     <body>
         <script src="css/dist/js/bootstrap.min.js"></script>
-        <legend style="text-align:right;"><h5>You are logged in as: <?php echo $username; ?> | <a href="accounts/logout.php">Logout</a></h5></legend>
+        <legend style="text-align:right; padding-right: 10px;"><h5>You are logged in as: <?php echo $username; ?> | <a href="accounts/logout.php">Logout</a></h5></legend>
 	<div class="text-center">
 	    <h1 class="text-primary">BRL-CAD Online Geometry Viewer</h1>
 	    <form class="navbar-form" action="upload_file.php" method="post" enctype="multipart/form-data">

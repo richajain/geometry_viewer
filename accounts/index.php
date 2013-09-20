@@ -46,6 +46,10 @@
             body {
                 background-color:#F2F2F2;
             }
+            #login-form {
+            margin-left: 38%;
+            }
+
         </style>
         </head>
 
@@ -56,11 +60,11 @@
                 echo "Account already exists";
                 }
             ?>
-
+        
+        <legend style="text-align: center;">Sign Up</legend>
         <form method="post" action="sendmail.php" 
-        class="form-horizontal" role="form">
+        class="form-horizontal" role="form" id="login-form">
             <fieldset>
-                <legend>Sign Up</legend>
     	        <div class="form-group">
                     <label class="col-lg-1 control-label" 
                     for="username">Username:</label>
@@ -91,10 +95,10 @@
                     </div>
                 </div>
         
-                <div class="col-lg-1">
+                <div>
     		    <input type="submit" value="Signup Now" 
                     class="btn btn-primary" name="signup" 
-                    style="width: 250px;"/>			
+                    style="width: 322px;"/>			
                 </div>
             </fieldset>    
         </form>			

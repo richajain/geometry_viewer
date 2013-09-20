@@ -46,6 +46,9 @@
         <style>
             body {
                 background-color:#F2F2F2;
+                background-image: url(../css/images/Display04.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
             }
 
             #left {

@@ -33,7 +33,7 @@ include 'variables.php';
         <meta name = "viewport" content = "width = device-width, 
         user-scalable = no, minimum-scale = 1.0, maximum-scale = 1.0">
 	<link rel = stylesheet href = "css/base.css"/>
-	<link rel = stylesheet href = "css/bootstrap.min.css"/>
+	<link rel = stylesheet href = "css/dist/css/bootstrap.css"/>
     </head>
     <body>
 	<script src = "js/three.min.js"></script>
@@ -46,11 +46,19 @@ include 'variables.php';
         <script src = "js/KeyboardState.js"></script>
         <script src = "js/jquery-1.10.2.min.js"></script>
         
-        <div id="top-bar">
-            <img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png">
-            <legend>You are logged in as: <?php echo 
+        <div id="top-bar" class="effect8">
+
+            <div>
+                <img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png">
+            </div>
+            <div id="logo-text">BRL-CAD</div>
+            <div id="slogan">Geometry Viewer</div>
+            <div class="vertical-line"> </div>
+            <!--div id="head-text">Geometry Viewer </div-->
+            <legend id="login-message">You are logged in as: <?php echo 
             $username; ?> | <a href="accounts/logout.php">Logout</a>
             </legend>
+            <div id="db-file-name"><?php $dbFileName = $_GET['dbFileName']; echo "File uploaded: $dbFileName" ?></div>
         </div>
         
         <div id = "ThreeJS"></div>
@@ -402,7 +410,7 @@ include 'variables.php';
                  * TODO: Clean it.
                  *
                  * */ 
-		document.write("<div id = \"leftSideBar\"><table><th>Entities:</th>");
+		document.write("<div id = \"leftSideBar\" class=\"effect6\"><table><th>Entities:</th>");
                     for (var h = 0; h < totalEntities-1; h++) {
                         if (entitiesList[h] == "_GLOBAL") {
                         h = h + 1;
