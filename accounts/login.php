@@ -27,49 +27,23 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-	<title>Sign In</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta http-equiv="imagetoolbar" content="no" />
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<meta name="copyright" content="" />
-
-	<link href="inc/css/bootstrap.min.css" rel="stylesheet" 
-        type="text/css" media="screen" />
-
-        <script src="inc/js/bootstrap.min.js"></script>
-        <script src="inc/js/jquery-1.10.2.min.js"></script>
-        
-        <style>
-            body {
-                background-color:#F2F2F2;
-            }
-
-            #login-form {
-            margin-left: 38%;
-            }
-        </style>
-	
-    </head>
+<?php include 'include/header.php'; ?>
 
     <body>
         <?php
-            /* Start session */
+            /** Start session */
             session_start();
-            include_once 'inc/php/config.php';
+            include_once 'include/db.php';
 
-            /*check if the form has been submitted */
+            /** check if the form has been submitted */
             if(isset($_POST['sign_in'])){
 
-                /* prevent mysql injection */
+                /** prevent mysql injection */
 	
                 $password = md5(mysql_real_escape_string($_POST['password']));
 	        $email = mysql_real_escape_string($_POST['email']);
 	
-                /* quick/simple validation */
+                /** quick/simple validation */
                 if (empty($password)) { 
                     $action['result'] = 'error'; 
                 }
@@ -99,15 +73,22 @@
                         exit();
                 
                     } else {
-                        /* Login failed */
-                        echo "email ID and / or password not found";
+                        /** Login failed */
+                        echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                            email ID and / or password not found.
+                            </div>";
+
+                        echo "<button type=\"submit\" class=\"btn btn-success\" id=\"alert-msge\" 
+                            name=\"sign_in\" onClick=\"window.location='login.php'\">
+                            Sign In </button>";
+
                         exit();
                     }
                 }
             }
         ?>
         
-        <legend style="text-align: center">Sign In</legend>        
+        <h3 style="text-align: center">Sign In</h3>
         <form method="post" action="" class="form-horizontal" 
         role="form" id="login-form">
             <fieldset>
@@ -137,6 +118,10 @@
     		        <input type="submit" value="Sign in" 
                         class="btn btn-primary" name="sign_in" 
                         style="width: 322px;"/>			
+                    </div>
+
+                    <div><br> 
+                        <a href="forgotpassword.php">Forgotten your password?</a>                   
                     </div>
             </fieldset>    
         </form>			

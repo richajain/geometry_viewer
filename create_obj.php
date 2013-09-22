@@ -22,6 +22,7 @@
  *
  */
 
+    include 'accounts/auth.php';
     include 'functions.php';
     
     $dbFileName = $_POST['db'];

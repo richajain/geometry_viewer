@@ -22,10 +22,10 @@
  *
  */
 
-    /* starting session */
+    /** starting session */
     session_start();
 
-    /* destroy sesion */
+    /** destroy sesion */
     session_destroy();
 
     header('Location: landing.php');

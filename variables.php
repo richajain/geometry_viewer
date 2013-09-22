@@ -22,14 +22,19 @@
  *
  */
 
-include 'accounts/auth.php';
-
-/* Path of directory where uploaded file get stored */
+/** Path of directory where uploaded file get stored */
 $uploadPath = "user_accounts/$username";
 
-/* Path of directory where OBJ files stored */
+/** Path of directory where OBJ files stored */
 $objPath = "user_accounts/$username/obj";
-    
+
+$title = "BRL-CAD Online Geometry Viewer";
+
+$siteUrl = 'http://localhost/~harmanpreet/';
+$subject = 'Confirmation Link';
+$senderEmail = 'geometryviewer@gmail.com';
+$senderName = 'Online Geometry Viewer';
+
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            

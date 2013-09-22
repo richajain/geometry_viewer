@@ -21,31 +21,11 @@
  *
  */
 
-body 
-{
-	font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
-	font-weight: normal;
-	background-color: ;
+body {
+	background-color: #F2F2F2;
 	margin: 0px;
 	overflow: hidden;
         line-height: 1;
-}
-
-#leftSideBar {
-	background-color: #DDDDDD;
- 	float: left; 
-	left: 0px; 
-	width: 170px; 
-	height: 600px; 
-        overflow: scroll;
-	padding-left: 5px;
-}
-
-#ThreeJS {
-   /*     z-index: 1; */
-        position: absolute; 
-        left: 170px; 
-        top: 70px; 
 }
 
 #top-bar {
@@ -67,39 +47,34 @@ body
         height: auto;
         width: 150px;
         font-size: 15px;
-        padding-top: 8px;
+        padding-top: 11px;
         margin-left: 76px;
 }
 
-#head-text {
-        height: auto;
-        width: 270px;
-        font-size: 23px;
-        padding-top: 13px;
-        margin-left: 282px;
-        margin-top: -49px;
-        font-weight: bold;
-        color: #C8415D;
-}
 
 #slogan {
         height: auto;
         width: 270px;
         font-size: 30px;
-        margin-top: -11px;
+        margin-top: -2px;
         margin-left: 76px;
         color: #C8415D;
 }
 
-#db-file-name {
-        height: auto;
-        width: 270px;
-        font-size: 13px;
-        margin-top: -49px;
-        margin-left: 330px;
-        color: #C8415D;
+#alert-msge {
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 11px;
 }
 
+#login-form {
+            margin-left: 38%;
+}
+
+.responsive-image { 
+	    max-width:100%; 
+            height:auto; 
+}
 
 #login-message {
         float: right;
@@ -109,17 +84,6 @@ body
         font-size: 13.5px;
         width: 320px;
 }
-
-
-.vertical-line {
-        width: 1px; 
-        background-color: black;
-        height: 50px; 
-        margin-left: 322px;
-        margin-top: -53px;
-        padding-right; 10px;
-}
-
 
 .effect6
 {

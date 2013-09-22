@@ -21,7 +21,7 @@
 /** @file geometry_viewer/upload_file.php
  *
  */
-
+    include 'accounts/auth.php';
     include 'functions.php';
 
     /** 
@@ -59,10 +59,10 @@
     
     /** Copying the name of file into variable */
     $dbFilePreffix = $dbNameComponents[0];
-     
+
     /** 
      * Command that lists the entities of a BRL-CAD database file is 
-     * copied into a variable 
+     * opied into a variable 
      */
     $cmd = "env /usr/brlcad/dev-7.24.1/bin/mged -c $uploadPath/$dbFileName ls -a 2>&1";
 
@@ -74,8 +74,6 @@
      * into array 
      */
     $list = explode(" ", $out);
-    
-    $serializedList = urlencode(serialize($list));
     
     /** Counting total number of entities */
     $totalEntities = count($list) - 2;
@@ -96,6 +94,8 @@
             if ($list[$i] == "_GLOBAL") {
                 $i = $i + 1;
                 $n = $n + 1;
+
+                /** this code has chances to be removed in future. */
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    } else {
@@ -109,11 +109,9 @@
             if ($list[$i] == "_GLOBAL") {
                 $i = $i + 1;
                 $n = $n + 1;
-//                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    } else {
-//                create_obj($dbFileName, $dbFilePreffix, $list[$i], $uploadPath, $objPath);
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";    
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    }       

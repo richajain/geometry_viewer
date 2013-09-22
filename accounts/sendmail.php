@@ -32,22 +32,19 @@
 </head>
 
 <?php
-    include_once 'inc/php/config.php';
+    include 'include/db.php';
+    include 'include/header.php';
+    include '../variables.php';
 
-    $siteUrl = 'http://site-url/';
-    $subject = 'Confirmation Link';
-    $senderEmail = 'yourGmailAccount@gmail.com';
-    $senderName = 'Online Geometry Viewer';
-
-    /* check if the form has been submitted */
+    /** check if the form has been submitted */
     if (isset($_POST['signup'])) {
 
-        /* prevent mysql injection */
+        /** prevent mysql injection */
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$email = mysql_real_escape_string($_POST['email']);
 	
-        /* quick/simple validation */
+        /** quick/simple validation */
         if (empty($username)) { 
             $status = 'error';
         }
@@ -67,7 +64,7 @@
             if (!$query_result) {         
                 echo 'Unable to search database to check whether user already exists';                                     
             } else if (mysql_num_rows($query_result) != 0) {
-                header('Location: index.php?userExists=yes');
+                header('Location: signup.php?userExists=yes');
             } else {
                 $password = md5($password);	
 			
@@ -76,30 +73,30 @@
                 VALUES(NULL,'$username','$password','$email',0)");
 		
 	        if ($add) {
-	            /* get the new user id */
+	            /** get the new user id */
 	            $userid = mysql_insert_id();
 	
-                    /* create a random key */
+                    /** create a random key */
 	            $key = $username . $email . date('mY');
 	            $key = md5($key);
 			
-                    /* add confirm row */
+                    /** add confirm row */
 	            $confirm = mysql_query("INSERT INTO `confirm` 
                     VALUES(NULL,'$userid','$key','$email')");	
 			
 	            if ($confirm) {
-                        /* Swift Mailer Library */
-                        require_once 'inc/php/swift/swift_required.php';
+                        /** Swift Mailer Library */
+                        require_once 'include/swift/swift_required.php';
 
-                        /* Mail Transport */
+                        /** Mail Transport */
                         $transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
                         ->setUsername('yourGmailAccount@gmail.com')
                         ->setPassword('xxxxxxxx');
 
-                        /* Mailer */
+                        /** Mailer */
                         $mailer = Swift_Mailer::newInstance($transport);
 
-                        /* Create a message */
+                        /** Create a message */
                         $message = Swift_Message::newInstance($subject)
                         ->setFrom(array($senderEmail => $senderName))
                         ->setTo(array($email => $username))
@@ -108,9 +105,11 @@
                         Please click the following link to activate your account:<br><br> 
                         <a href="'.$siteUrl.'geometry_viewer/accounts/confirm.php?email='.$email.'&key='.$key.'&username='.$username.'"> '.$siteUrl.'geometry_viewer/accounts/confirm.php?email='.$email.'&key='.$key.'&username='.$username.'</a> <br><br>Have a nice day!', 'text/html');
 
-                        /* send the email */
+                        /** send the email */
         	        if ($mailer->send($message)) {			
-	        	    echo "<h3>Thanks for signing up. Please check your email for confirmation!</h3>";	
+                            echo"<div id=\"alert-msge\" class=\"alert alert-success\">
+                                Thanks for signing up. Please check your email for confirmation!
+                                <div>";	
         	        } else {
         		    echo "Could not send confirm email";
         	        }
@@ -124,10 +123,7 @@
 	    }
 	}
     }
-include 'inc/elements/header.php';
-include 'inc/elements/footer.php';
-
-/*                                                                    
+/**                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            
  * tab-width: 8

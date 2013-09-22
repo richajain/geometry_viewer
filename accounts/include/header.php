@@ -13,17 +13,17 @@
 		<meta name="author" content="" />
 		<meta name="copyright" content="" />
 
-		<link href="inc/css/zurb_buttons.css" rel="stylesheet" type="text/css" />
-		<link href="inc/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-                <script src="inc/js/bootstrap.min.js"></script>
-                <script src="inc/js/jquery-1.10.2.min.js"></script>
+		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+                <link href="include/style.css" rel="stylesheet" type="text/css"/>
+                <script src="../js/bootstrap.min.js"></script>
+                <script src="../js/jquery-1.10.2.min.js"></script>
 
 	</head>
 
 	<body>
-
-		<div id="content">
-		
-		<!--h1>Signup Today!</h1-->
+		<div id="top-bar" class="effect8">
+                    <div><img id="top-bar-logo" src="../images/BRL-CAD_gear_logo_256.png"></div>
+                    <div id="logo-text">BRL-CAD</div>
+                    <div id="slogan">Geometry Viewer</div>
+                </div>
 		

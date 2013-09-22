@@ -22,41 +22,29 @@
  *
  */
 include 'accounts/auth.php';
+include 'variables.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-	<meta charset="utf-8">
-	<title>BRL-CAD Online Geometry Viewer</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel=stylesheet href="css/dist/css/bootstrap.min.css" media="screen">
-	<link rel=stylesheet href="css/upload.css" media="screen">
-	<style type="text/css">
-		.responsive-image { 
-		    max-width:100%; height:auto; 
-	    	}
-		body {
-		    background-color:#F2F2F2;
-		}
-	</style>
-    </head>
+<?php 
+    include 'header.php'; 
+?>
     <body>
-        <script src="css/dist/js/bootstrap.min.js"></script>
-        <legend style="text-align:right; padding-right: 10px;"><h5>You are logged in as: <?php echo $username; ?> | <a href="accounts/logout.php">Logout</a></h5></legend>
+        <script src="js/bootstrap.min.js"></script>
+        <br>
 	<div class="text-center">
-	    <h1 class="text-primary">BRL-CAD Online Geometry Viewer</h1>
-	    <form class="navbar-form" action="upload_file.php" method="post" enctype="multipart/form-data">
-		<label for="file">Upload BRl-CAD database(.g) file:</label><br>
-		<input class="form-control" style="width: 250px;"  type="file" name="file" id="file"><br><br>
-		<input type="submit" name="submit" value="Submit" class="btn btn-success btn-large">
+            <form class="navbar-form" action="upload_file.php" 
+            method="post" enctype="multipart/form-data">
+                <label for="file">Upload BRl-CAD database(.g) file:
+                </label><br>
+                <input class="form-control" style="width: 250px;"  
+                type="file" name="file" id="file"><br><br>
+                <input type="submit" name="submit" value="Submit" 
+                class="btn btn-success btn-large">
 	    </form>
-	    <img class="responsive-image" src="images/BRL-CAD_gear_logo_256.png" style="width:250px"><br>
-	    <a href="http://brlcad.org/" target="_blank">http://brlcad.org/</a>
 	</div>
     </body>
 </html>
-
 <?php
 /*                                                                    
  * Local Variables:                                                   

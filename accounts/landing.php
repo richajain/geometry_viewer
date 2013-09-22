@@ -38,18 +38,19 @@
 	<meta name="author" content="" />
 	<meta name="copyright" content="" />
 
-        <link href="inc/css/bootstrap.min.css" rel="stylesheet" 
+        <link href="../css/bootstrap.min.css" rel="stylesheet" 
         type="text/css" media="screen" />
-        <script src="inc/js/bootstrap.min.js"></script>
-        <script src="inc/js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery-1.10.2.min.js"></script>
         
         <style>
             body {
-                background-color:#F2F2F2;
-                background-image: url(../css/images/Display04.png);
-                background-size: 100%;
-                background-repeat: no-repeat;
-            }
+                background: #F2F2F2 url(../css/images/Display04.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover; 
+          }
 
             #left {
                 float:left;
@@ -87,7 +88,7 @@
         
         <div id="main-buttons-div"> 
         <button type="submit" class="btn btn-primary" id="left" 
-        name="signup" onClick="window.location='index.php'">
+        name="signup" onClick="window.location='signup.php'">
         Signup Now</button>			
         
         <button type="submit" class="btn btn-success" id="right" 

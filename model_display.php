@@ -22,29 +22,30 @@
  *
  */
 
+include 'accounts/auth.php';
 include 'variables.php';
 ?>
 
 <!doctype html>
-<html lang = "en">
+<html lang="en">
     <head>
         <title>BRL-CAD Online Geometry Viewer</title>
-	<meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device-width, 
-        user-scalable = no, minimum-scale = 1.0, maximum-scale = 1.0">
-	<link rel = stylesheet href = "css/base.css"/>
-	<link rel = stylesheet href = "css/dist/css/bootstrap.css"/>
+	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, 
+        user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel=stylesheet href="css/base.css"/>
+	<link rel=stylesheet href="css/bootstrap.css"/>
     </head>
     <body>
-	<script src = "js/three.min.js"></script>
-	<script src = "js/Detector.js"></script>
-	<script src = "js/Stats.js"></script>
-	<script src = "js/loaders/OBJLoader.js"></script>
-	<script src = "js/OrbitControls.js"></script>
-	<script src = "js/THREEx.FullScreen.js"></script>
-        <script src = "js/THREEx.WindowResize.js"></script>
-        <script src = "js/KeyboardState.js"></script>
-        <script src = "js/jquery-1.10.2.min.js"></script>
+	<script src="js/three.min.js"></script>
+	<script src="js/Detector.js"></script>
+	<script src="js/Stats.js"></script>
+	<script src="js/loaders/OBJLoader.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/THREEx.FullScreen.js"></script>
+        <script src="js/THREEx.WindowResize.js"></script>
+        <script src="js/KeyboardState.js"></script>
+        <script src="js/jquery-1.10.2.min.js"></script>
         
         <div id="top-bar" class="effect8">
 
@@ -54,24 +55,27 @@ include 'variables.php';
             <div id="logo-text">BRL-CAD</div>
             <div id="slogan">Geometry Viewer</div>
             <div class="vertical-line"> </div>
-            <!--div id="head-text">Geometry Viewer </div-->
-            <legend id="login-message">You are logged in as: <?php echo 
-            $username; ?> | <a href="accounts/logout.php">Logout</a>
-            </legend>
-            <div id="db-file-name"><?php $dbFileName = $_GET['dbFileName']; echo "File uploaded: $dbFileName" ?></div>
+            <div id="login-message" style="text-align: right; padding-right: 10px;">
+                <h5>You are logged in as: <?php echo $username; ?> | <a href="accounts/logout.php">Logout</a></h5>
+            </div>
+            <div id="db-file-name">
+                <?php 
+                    $dbFileName=$_GET['dbFileName']; 
+                    echo "File uploaded: $dbFileName" ?>
+            </div>
         </div>
         
-        <div id = "ThreeJS"></div>
+        <div id="ThreeJS"></div>
 
 	<script>
-
 	    /** standard global variables */
 	    var container, scene, camera, renderer, controls, stats;
             var clock = new THREE.Clock();
             
             /** 
              * creating object of KeyboardState() to implement
-             * keyboard shorcut keys to see dofferent views of model */
+             * keyboard shorcut keys to see different views of model 
+             */
             var keyboard = new KeyboardState();
 
             /** 
@@ -104,7 +108,7 @@ include 'variables.php';
             {	
                 keyboard.update();
 
-                /* keyboard options to see different views of model */
+                /** keyboard options to see different views of model */
                 if (keyboard.down("T")) {
                     camera.position.set(0, 100, 0);
                 }
@@ -229,7 +233,7 @@ include 'variables.php';
                          * By default, models appear tilted(one side 
                          * raised). So rotating model to make them 
                          * appear horizontally.
-                         * */
+                         */
                     object.rotation.z = 90 * Math.PI/180;
                     object.rotation.x = -90 * Math.PI/180;
                     scene.add(object);
@@ -253,7 +257,7 @@ include 'variables.php';
                  * receiving name of obj file in 'data' variable in 
                  * response from create_obj.php and passing it 
                  * to single_obj)loader() to load it to ThreeJS scene.
-                 * */
+                 */
                 $.post('create_obj.php', {db: dbFileName, en: entity}, function(data) {
                     if (data == entity+".obj"){               
                         single_obj_loader(data);
@@ -389,7 +393,7 @@ include 'variables.php';
                 /** 
                  * Receive data from URL using GET method.
                  * TODO: Should use POST method. 
-                 * */
+                 */
                 <?php
                 $entitiesString = $_GET['entitiesString'];
                 $dbFileName = $_GET['dbFileName'];
@@ -409,14 +413,14 @@ include 'variables.php';
                  *
                  * TODO: Clean it.
                  *
-                 * */ 
-		document.write("<div id = \"leftSideBar\" class=\"effect6\"><table><th>Entities:</th>");
+                 */ 
+		document.write("<div id=\"leftSideBar\" class=\"effect6\"><table><th>Entities:</th>");
                     for (var h = 0; h < totalEntities-1; h++) {
                         if (entitiesList[h] == "_GLOBAL") {
                         h = h + 1;
-	    	    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</td></a>"+"    <td><a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide</a></td></tr>");
+	    	    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id=\"view\" href=# onclick=\"add_entity(this.name)\" name=\""+entitiesList[h]+"\" value=\""+entitiesList[h]+"\">View</td></a>"+"    <td><a id=\"hide\" href=# onclick=\"delete_entity(this.name)\" name=\""+entitiesList[h]+"\" value=\""+entitiesList[h]+"\">Hide</a></td></tr>");
                         } else {
-                    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id = \"view\" href = # onclick = \"add_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">View</td></a>"+"   <td><a id = \"hide\" href = # onclick = \"delete_entity(this.name)\" name = \""+entitiesList[h]+"\" value = \""+entitiesList[h]+"\">Hide</a></td></tr>");
+                    document.write("<tr><td>"+entitiesList[h]+"</td><td><a id=\"view\" href=# onclick=\"add_entity(this.name)\" name=\""+entitiesList[h]+"\" value=\""+entitiesList[h]+"\">View</td></a>"+"   <td><a id=\"hide\" href=# onclick=\"delete_entity(this.name)\" name=\""+entitiesList[h]+"\" value=\""+entitiesList[h]+"\">Hide</a></td></tr>");
                      
                         }
                     }

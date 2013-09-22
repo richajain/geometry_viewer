@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 03, 2013 at 09:08 PM
+-- Generation Time: Sep 23, 2013 at 12:31 AM
 -- Server version: 5.5.32
--- PHP Version: 5.3.10-1ubuntu3.7
+-- PHP Version: 5.3.10-1ubuntu3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,26 @@ CREATE TABLE IF NOT EXISTS `confirm` (
   `key` varchar(128) NOT NULL DEFAULT '',
   `email` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=115 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=171 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tokens`
+--
+
+CREATE TABLE IF NOT EXISTS `tokens` (
+  `token` varchar(50) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `used` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tokens`
+--
+
+INSERT INTO `tokens` (`token`, `email`, `used`) VALUES
+('88a86eb7d7087c9b896f410f623d6b8d', 'harman052@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -47,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(250) NOT NULL DEFAULT '',
   `active` binary(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=115 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=171 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

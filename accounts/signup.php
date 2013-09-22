@@ -27,41 +27,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Signup</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta http-equiv="imagetoolbar" content="no" />
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<meta name="copyright" content="" />
-
-        <link href="inc/css/bootstrap.min.css" rel="stylesheet" 
-        type="text/css" media="screen" />
-        <script src="inc/js/bootstrap.min.js"></script>
-        <script src="inc/js/jquery-1.10.2.min.js"></script>
-        
-        <style>
-            body {
-                background-color:#F2F2F2;
-            }
-            #login-form {
-            margin-left: 38%;
-            }
-
-        </style>
-        </head>
-
-	<body>
+<?php include 'include/header.php'; ?>
+        <body>
             <?php
                 $userAccountExists = $_GET['userExists'];
                 if ($userAccountExists == "yes") {
-                echo "Account already exists";
+                    echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                              Account already exists.";
+                    echo "</div>";
                 }
             ?>
         
-        <legend style="text-align: center;">Sign Up</legend>
+        <h3 style="text-align: center">Sign Up</h3>
         <form method="post" action="sendmail.php" 
         class="form-horizontal" role="form" id="login-form">
             <fieldset>

@@ -22,12 +22,12 @@
  *
  */
 
-    include 'inc/php/config.php';
-    include 'inc/elements/header.php';
+    include 'include/db.php';
+    include 'include/header.php';
     $status = NULL;
 
-    /* check if the $_GET variables are present	*/
-    /* quick/simple validation */
+    /** check if the $_GET variables are present */
+    /** quick/simple validation */
     if (empty($_GET['email']) || empty($_GET['key'])) {
 	$status = 'error';
         echo "We are missing variables. Please double check your email.";
@@ -35,52 +35,56 @@
 		
     if ($status != 'error') {
 
-        /* cleanup the variables */
+        /** cleanup the variables */
 	$email = mysql_real_escape_string($_GET['email']);
 	$key = mysql_real_escape_string($_GET['key']);
 	$username = mysql_real_escape_string($_GET['username']);
 
-        /* check if the key is in the database */
+        /** check if the key is in the database */
         $check_key = mysql_query("SELECT * FROM `confirm` WHERE 
         `email` = '$email' AND `key` = '$key' LIMIT 1") 
         or die(mysql_error());
 	
 	if (mysql_num_rows($check_key) != 0) {
 				
-            /* get the confirm info */
+            /** get the confirm info */
 	    $confirm_info = mysql_fetch_assoc($check_key);
 		
-            /* confirm the email and update the users database */
+            /** confirm the email and update the users database */
             $update_users = mysql_query("UPDATE `users` SET 
             `active` = 1 WHERE `id` = '$confirm_info[userid]' 
             LIMIT 1") or die(mysql_error());
 
-            /* delete the confirm row */
+            /** delete the confirm row */
             $delete = mysql_query("DELETE FROM `confirm` WHERE 
             `id` = '$confirm_info[id]' LIMIT 1") or die(mysql_error());
 		
 	    if ($update_users) {				
-                echo "User has been confirmed. Thank-You!";
+                echo "<div id=\"alert-msge\" class=\"alert alert-success\">
+                    User has been confirmed. Click following <b>Sign In</b> button to login. Thank-You!
+                    </div>";
                 $createUserDir = "mkdir ../user_accounts/$username";
                 $createObjDir = "mkdir ../user_accounts/$username/obj";
                 shell_exec($createUserDir);
                 shell_exec($createObjDir);
                 
-            echo "<br><button type=\"submit\" class=\"btn btn-success\" id=\"right\" 
+            echo "<button type=\"submit\" class=\"btn btn-success\" id=\"alert-msge\" 
             name=\"sign_in\" onClick=\"window.location='login.php'\">
             Sign In </button>";
 
 	    } else {
-		echo "The user could not be updated Reason: ".mysql_error();
+                echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                    The user could not be updated Reason: ".mysql_error();
+                echo "</div>";
 	    }
 	
 	} else {
-	    echo "The key and email is not in our database.";
+            echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                <h5>The key and email is not in our database.</h5>
+                </div>";
 	}
 
-    }
-    include 'inc/elements/footer.php'; 
-    
+    }    
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            
