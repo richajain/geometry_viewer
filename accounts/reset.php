@@ -1,5 +1,5 @@
 <?php
-/*                        R E S E T . P H P
+/*                       R E S E T . P H P
  * BRL-CAD
  *
  * Copyright (c) 1995-2013 United States Government as represented by
@@ -22,6 +22,7 @@
  *
  */
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -33,6 +34,7 @@
     session_start();
     $token = $_GET['token'];
 
+    /** Matching user's token with one in the database. */
     if (!isset($_POST['password'])) {
         $confirmToken = "select email from tokens where token = '".$token."' and used = 0";
         $res = mysql_query($confirmToken);
@@ -44,15 +46,15 @@
             $_SESSION['email'] = $email;
         } else { 
             die("<div id=\"alert-msge\" class=\"alert alert-danger\">
-             Invalid link or Password already changed.
-             </div>");
+            Invalid link or Password already changed.
+            </div>");
         }
     }
 
-    $pass = $_POST['password'];
+    $password = $_POST['password'];
     $email = $_SESSION['email'];
     
-    if (!isset($pass)) {
+    if (!isset($password)) {
         echo "<br>";
         echo'<h3 style="text-align: center">Reset Your Password</h3>';
         echo'<form method="post" class="form-horizontal" role="form" 
@@ -75,7 +77,7 @@
     }
 
     if (isset($_POST['password'])&&isset($_SESSION['email'])) {
-        $updatePasswd = "update users set password = '".md5($pass)."' where email = '".$email."'";
+        $updatePasswd = "update users set password = '".md5($password)."' where email = '".$email."'";
         $res = mysql_query($updatePasswd);
         if ($res) {
             mysql_query("update tokens set used = 1 where token = '".$token."'");

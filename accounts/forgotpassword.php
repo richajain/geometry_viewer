@@ -22,6 +22,7 @@
  *
  */
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -31,7 +32,7 @@
     include 'include/db.php';
     include '../variables.php';
 
-    /** Swift Mailer Library */
+    /** Swift Mailer Library. */
     include 'include/swift/swift_required.php';
 
     if(!isset($_GET['email'])) {
@@ -70,7 +71,7 @@
         die();    
     }
 
-    /** create a random key */
+    /** Create random key. */
     $date = date_create();
     $key = $email . date_format($date, 'Y-m-d H:i:s') . "\n";
     $token = md5($key);
@@ -79,7 +80,7 @@
 
     /** 
      * Mail Transport 
-     * TODO: This code should be in separate file.
+     * TODO: This code should be in separate file of function.
      */
     $transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
     ->setUsername('yourGmailAccount@gmail.com')
@@ -89,7 +90,7 @@
     $mailer = Swift_Mailer::newInstance($transport);
 
     /** Create a message */
-    $message = Swift_Message::newInstance($subject)
+    $message = Swift_Message::newInstance('Password Reset')
     ->setFrom(array($senderEmail => $senderName))
     ->setTo(array($email => $email))
     ->setBody('Hi '.$email.'!
@@ -106,6 +107,7 @@
                  Error occurred. Unable to send password reset link.
             </div>";
     }
+
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            

@@ -1,0 +1,26 @@
+\hypertarget{auth_8php}{\section{accounts/auth.php File Reference}
+\label{auth_8php}\index{accounts/auth.\-php@{accounts/auth.\-php}}
+}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+if(!isset(\$\-\_\-\-S\-E\-S\-S\-I\-O\-N\mbox{[}'id'\mbox{]})$|$$|$(trim(\$\-\_\-\-S\-E\-S\-S\-I\-O\-N\mbox{[}'id'\mbox{]})== '')) \hyperlink{auth_8php_af520ee461d08ce3d0037800137bc1e81}{else}
+\item 
+\hypertarget{auth_8php_ad634f418b20382e2802f80532d76d3cd}{{\bfseries \$email} = \$\-\_\-\-S\-E\-S\-S\-I\-O\-N\mbox{[}'email'\mbox{]}}\label{auth_8php_ad634f418b20382e2802f80532d76d3cd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{auth_8php_af520ee461d08ce3d0037800137bc1e81}{\index{auth.\-php@{auth.\-php}!else@{else}}
+\index{else@{else}!auth.php@{auth.\-php}}
+\subsubsection[{else}]{\setlength{\rightskip}{0pt plus 5cm}if (!isset(\$\-\_\-\-S\-E\-S\-S\-I\-O\-N\mbox{[}'id'\mbox{]})$|$$|$(trim(\$\-\_\-\-S\-E\-S\-S\-I\-O\-N\mbox{[}'id'\mbox{]})== '')) else}}\label{auth_8php_af520ee461d08ce3d0037800137bc1e81}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+\{
+        $username = $\_SESSION[\textcolor{stringliteral}{'username'}]
+\end{DoxyCode}
+Check whether the session is created. If yes, pass username and email of logged in user to variables otherwise redirect to \hyperlink{landing_8php}{landing.\-php}. 
+
+Definition at line 36 of file auth.\-php.
+

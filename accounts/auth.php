@@ -22,12 +22,14 @@
  *
  */
 
-    /* Start session */
+    /** Start session. */
     session_start();
 
-    /** Check whether the session variable SESS_MEMBER_ID is 
-     * present or not 
-     * */
+    /** 
+     * Check whether the session is created. If yes, pass username 
+     * and email of logged in user to variables otherwise redirect 
+     * to landing.php.
+     */
     if (!isset($_SESSION['id']) || (trim($_SESSION['id']) == '')) {
         header("Location: accounts/landing.php");
         exit();

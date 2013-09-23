@@ -68,18 +68,18 @@ include 'variables.php';
         <div id="ThreeJS"></div>
 
 	<script>
-	    /** standard global variables */
+	    /** Standard global variables. */
 	    var container, scene, camera, renderer, controls, stats;
             var clock = new THREE.Clock();
             
             /** 
-             * creating object of KeyboardState() to implement
-             * keyboard shorcut keys to see different views of model 
+             * Creating object of KeyboardState() to implement
+             * keyboard shorcut keys to see different views of model. 
              */
             var keyboard = new KeyboardState();
 
             /** 
-             * global obj model array, used to apply wireframe/shade 
+             * Global obj model array, used to apply wireframe/shade 
              * to models.   
              */
             var objGlobalObject = [];
@@ -87,7 +87,7 @@ include 'variables.php';
 	    /** custom global variables */
 	    var entitiesInScene = new Array();
 	    var objEntitiesIndex, dbFileName;
-            var objPath  = <?php echo json_encode($objPath); ?>; 
+            var objPath = <?php echo json_encode($objPath); ?>; 
 
 
             /**
@@ -108,7 +108,7 @@ include 'variables.php';
             {	
                 keyboard.update();
 
-                /** keyboard options to see different views of model */
+                /** Keyboard options to see different views of model. */
                 if (keyboard.down("T")) {
                     camera.position.set(0, 100, 0);
                 }
@@ -126,7 +126,7 @@ include 'variables.php';
                 }
 
                 /** 
-                 * if "W" is pressed, wireframe applied to all models 
+                 * If "W" is pressed, wireframe applied to all models 
                  * in the scene. 
                  */
                 if (keyboard.down("W")) {
@@ -141,7 +141,7 @@ include 'variables.php';
                 }
 
                 /** 
-                 * if "S" is pressed, shade applied to all models 
+                 * If "S" is pressed, shade applied to all models 
                  * in the scene. 
                  */
                 if (keyboard.down("S")) {
@@ -176,7 +176,7 @@ include 'variables.php';
              */
             function multiple_obj_loader(objFile)
             {	    
-                /** material of OBJ model */
+                /** Material of OBJ model. */
                 var OBJMaterial = new THREE.MeshPhongMaterial({color: 0x8888ff});
                 var loader = new THREE.OBJLoader();
                 loader.load(objFile[k], function (object){
@@ -229,11 +229,11 @@ include 'variables.php';
             	    }
         	        });
                     object.position.y = 0.1;
-                        /** 
-                         * By default, models appear tilted(one side 
-                         * raised). So rotating model to make them 
-                         * appear horizontally.
-                         */
+                    /** 
+                     * By default, models appear tilted(one side 
+                     * raised). So rotating model to make them 
+                     * appear horizontally.
+                     */
                     object.rotation.z = 90 * Math.PI/180;
                     object.rotation.x = -90 * Math.PI/180;
                     scene.add(object);
@@ -246,7 +246,7 @@ include 'variables.php';
             /**
              * A D D _ E N T I T Y
              *
-             * Adds an entity to ThreeJS scene
+             * Adds an entity to ThreeJS scene.
              */
             function add_entity(entity) 
             {
@@ -269,7 +269,7 @@ include 'variables.php';
             /**
              * D E L E T E _ E N T I T Y
              *
-             * Delete an entity from ThreeJS scene
+             * Delete an entity from ThreeJS scene.
              */
             function delete_entity(entity) 
             {
@@ -287,35 +287,35 @@ include 'variables.php';
             /**
              * I N I T
              *
-             * Initializes ThreeJS scene
+             * Initializes ThreeJS scene.
              */
 	    function init() 
 	    {
-		/** scene */
+		/** Scene */
 		scene = new THREE.Scene();
 		
 		/** 
-                 * set the view size in pixels (custom or according 
-                 * to window size)
+                 * Set the view size in pixels (custom or according 
+                 * to window size).
                  */ 
                 var screenWidth = window.innerWidth; 
                 var screenHeight = window.innerHeight;	
 
-		/** camera attributes */
+		/** Camera attributes. */
                 var viewAngle = 45; 
                 var aspect = screenWidth / screenHeight; 
                 var near = 0.1, far = 20000000;
 
-		/** set up camera */
+		/** Set up camera. */
 		camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far);
 
-		/** add camera to the scene */
+		/** Add camera to the scene. */
 		scene.add(camera);
 
                 /** 
                  * Set camera position (default position is 
                  * (0, 0, 0)) and set the angle towards the scene 
-                 * origin 
+                 * origin. 
                  */
 		camera.position.set(1000, 1000, 1000);
 		camera.lookAt(scene.position);	
@@ -333,33 +333,34 @@ include 'variables.php';
 			
                 /** 
                  * Attach div element to variable to contain 
-                 * the renderer
+                 * the renderer.
                  */
 		container = document.getElementById('ThreeJS');
 	    			
-		/** attach renderer to the container div */
+		/** Attach renderer to the container div. */
 		container.appendChild(renderer.domElement);
 			
-		/** automatically resize renderer */
+		/** Automatically resize renderer. */
 		THREEx.WindowResize(renderer, camera);
 			
-		/** toggle full-screen on given key press */
+		/** Toggle full-screen on given key press. */
 		THREEx.FullScreen.bindKey({ charCode: 'm'.charCodeAt(0) });
 			
 		/** Controls */
 	
 		/** 
-		 * move mouse and: left click to rotate, 
+		 * Move mouse and: left click to rotate, 
 		 * middle click to zoom, 
-		 * right  click to pan 
+		 * right  click to pan. 
 		 */
 		controls = new THREE.OrbitControls(camera, renderer.domElement);
 			
 		/** Stats */
 			
-                /** displays current and past frames per second 
-                 * attained by scene 
-                 * */
+                /** 
+                 * Displays current and past frames per second 
+                 * attained by scene. 
+                 */
 		stats = new Stats();
 		stats.domElement.style.position = 'absolute';
 		stats.domElement.style.bottom = '0px';
@@ -368,7 +369,7 @@ include 'variables.php';
 			
 		/** Light */
 			
-		/** adding lights to scene */
+		/** Adding lights to scene. */
 		var light = new THREE.PointLight(0xffffff);
 		light.position = camera.position;
 		scene.add(light);
@@ -380,8 +381,8 @@ include 'variables.php';
 		/** Geometry */
 			
 		/** 
-		 * create a set of coordinate axes to help orient user 
-		 * specify length in pixels in each direction 
+		 * Create a set of coordinate axes to help orient user 
+		 * specify length in pixels in each direction. 
 		 */
 		var axes = new THREE.AxisHelper(10000);
 		scene.add(axes);
@@ -407,12 +408,12 @@ include 'variables.php';
 
                 var totalEntities = entitiesList.length;
 
-                /** Creates left side bar to display list of 
+                /** 
+                 * Creates left side bar to display list of 
                  * entities, each entity having corresponding pair of
                  * "view" and "delete" button. 
                  *
                  * TODO: Clean it.
-                 *
                  */ 
 		document.write("<div id=\"leftSideBar\" class=\"effect6\"><table><th>Entities:</th>");
                     for (var h = 0; h < totalEntities-1; h++) {
@@ -427,10 +428,10 @@ include 'variables.php';
 		document.write("</table></div>");
             }
 
-            /** initialization */
+            /** Initialization */
 	    init();
 
-	    /** animation loop / game lop */
+	    /** Animation loop */
 	    animate();
 
         </script>

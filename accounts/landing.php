@@ -22,6 +22,7 @@
  *
  */
 
+include '../variables.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
@@ -29,7 +30,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-	<title>Sign up | Sign In</title>
+    <title><?php echo $title; ?></title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="imagetoolbar" content="no" />
@@ -84,7 +85,7 @@
     </head>
 
     <body>
-        <h1 class="text-primary" id="heading">BRL-CAD Online Geometry Viewer</h1>
+        <h1 class="text-primary" id="heading"><?php echo $title; ?></h1>
         
         <div id="main-buttons-div"> 
         <button type="submit" class="btn btn-primary" id="left" 

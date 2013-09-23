@@ -21,15 +21,17 @@
 /** @file geometry_viewer/upload.php
  *
  */
-include 'accounts/auth.php';
-include 'variables.php';
+    include 'accounts/auth.php';
+    include 'variables.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <?php 
     include 'header.php'; 
 ?>
-    <body>
+
         <script src="js/bootstrap.min.js"></script>
         <br>
 	<div class="text-center">
@@ -45,6 +47,7 @@ include 'variables.php';
 	</div>
     </body>
 </html>
+
 <?php
 /*                                                                    
  * Local Variables:                                                   

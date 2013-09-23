@@ -28,58 +28,58 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php include 'include/header.php'; ?>
-        <body>
-            <?php
-                $userAccountExists = $_GET['userExists'];
-                if ($userAccountExists == "yes") {
-                    echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
-                              Account already exists.";
-                    echo "</div>";
-                }
-            ?>
+        <?php
+            $userAccountExists = $_GET['userExists'];
+            if ($userAccountExists == "yes") {
+                echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                    Account already exists.";
+                echo "</div>";
+            }
+        ?>
         
-        <h3 style="text-align: center">Sign Up</h3>
-        <form method="post" action="sendmail.php" 
-        class="form-horizontal" role="form" id="login-form">
-            <fieldset>
-    	        <div class="form-group">
-                    <label class="col-lg-1 control-label" 
-                    for="username">Username:</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" 
-                        id="name" name="username" style="width: 250px;"required>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="col-lg-1 control-label" 
-                    for="password">Password:</label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" 
-                        id ="password" name="password" 
-                        style="width: 250px;" required>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-    		    <label class="col-lg-1 control-label" 
-                    for="email">Email:</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control" 
-                        id ="email" name="email" style="width: 250px;" required>
-                    </div>
-                </div>
+    <h3 style="text-align: center">Sign Up</h3>
         
-                <div>
-    		    <input type="submit" value="Signup Now" 
-                    class="btn btn-primary" name="signup" 
-                    style="width: 322px;"/>			
-                </div>
-            </fieldset>    
-        </form>			
-    </body>
+    <?php /** Signup form. */ ?>
+    <form method="post" action="sendmail.php" 
+    class="form-horizontal" role="form" id="login-form">
+        <fieldset>
+           <div class="form-group">
+               <label class="col-lg-1 control-label" 
+               for="username">Username:</label>
+               <div class="col-lg-10">
+                   <input type="text" class="form-control" 
+                   id="name" name="username" style="width: 250px;"required>
+               </div>
+           </div>
+
+
+           <div class="form-group">
+               <label class="col-lg-1 control-label" 
+               for="password">Password:</label>
+               <div class="col-lg-10">
+                   <input type="password" class="form-control" 
+                   id ="password" name="password" 
+                   style="width: 250px;" required>
+               </div>
+           </div>
+
+
+           <div class="form-group">
+   	    <label class="col-lg-1 control-label" 
+               for="email">Email:</label>
+               <div class="col-lg-10">
+                   <input type="email" class="form-control" 
+                   id ="email" name="email" style="width: 250px;" required>
+               </div>
+           </div>
+   
+           <div>
+   	    <input type="submit" value="Signup Now" 
+               class="btn btn-primary" name="signup" 
+               style="width: 322px;"/>			
+           </div>
+       </fieldset>    
+   </form>			
 </html>
 
 <?php

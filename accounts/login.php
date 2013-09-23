@@ -27,105 +27,102 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<?php include 'include/header.php'; ?>
+<?php 
 
-    <body>
-        <?php
-            /** Start session */
-            session_start();
-            include_once 'include/db.php';
+    include 'include/header.php'; 
+    include 'include/db.php';
 
-            /** check if the form has been submitted */
-            if(isset($_POST['sign_in'])){
+    /** Start session. */
+    session_start();
+    
+   
+    /** Check if the form has been submitted. */
+    if(isset($_POST['sign_in'])){
 
-                /** prevent mysql injection */
-	
-                $password = md5(mysql_real_escape_string($_POST['password']));
-	        $email = mysql_real_escape_string($_POST['email']);
-	
-                /** quick/simple validation */
-                if (empty($password)) { 
-                    $action['result'] = 'error'; 
-                }
+        /** Prevent mysql injection. */
 
-                if (empty($email)) { 
-                    $action['result'] = 'error'; 
-                }
-	
-	        if ($action['result'] != 'error') {
-				
-                    $result = mysql_query("SELECT * FROM `users` WHERE 
-                    (email='$email' AND password='$password')")  
-                    or die(mysql_error());
+        $password = md5(mysql_real_escape_string($_POST['password']));
+        $email = mysql_real_escape_string($_POST['email']);
 
-                    if(!isset($result)) {
-                        echo "query failed";
-                    }
+        /** 
+         * Validation.
+         * TODO: Need more secure way to implement 
+         * sign-in / sign-up feature.
+         */
+        if (empty($password)) { 
+            $action['result'] = 'error'; 
+        }
 
-                    if (mysql_num_rows($result) > 0) {
-                        session_regenerate_id();
-                        $member = mysql_fetch_assoc($result);
-                        $_SESSION['id'] = $member['id'];
-                        $_SESSION['username'] = $member['username'];
-                        $_SESSION['email'] = $member['email'];
-                        session_write_close();
-                        header("Location: ../upload.php");
-                        exit();
-                
-                    } else {
-                        /** Login failed */
-                        echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
-                            email ID and / or password not found.
-                            </div>";
+        if (empty($email)) { 
+            $action['result'] = 'error'; 
+        }
 
-                        echo "<button type=\"submit\" class=\"btn btn-success\" id=\"alert-msge\" 
-                            name=\"sign_in\" onClick=\"window.location='login.php'\">
-                            Sign In </button>";
+        if ($action['result'] != 'error') {		
+            $result = mysql_query("SELECT * FROM `users` WHERE 
+            (email='$email' AND password='$password')")  
+            or die(mysql_error());
 
-                        exit();
-                    }
-                }
+            if(!isset($result)) {
+                echo "query failed";
             }
-        ?>
+
+            if (mysql_num_rows($result) > 0) {
+                session_regenerate_id();
+                $member = mysql_fetch_assoc($result);
+                $_SESSION['id'] = $member['id'];
+                $_SESSION['username'] = $member['username'];
+                $_SESSION['email'] = $member['email'];
+                session_write_close();
+                header("Location: ../upload.php");
+                exit();
+            } else {
+                /** Login failed. */
+                echo "<div id=\"alert-msge\" class=\"alert alert-danger\">
+                    email ID and / or password not found.
+                    </div>";
+
+                echo "<button type=\"submit\" class=\"btn btn-success\" id=\"alert-msge\" 
+                    name=\"sign_in\" onClick=\"window.location='login.php'\">
+                    Sign In </button>";
+
+                exit();
+            }
+        }
+    }
+?>
         
-        <h3 style="text-align: center">Sign In</h3>
-        <form method="post" action="" class="form-horizontal" 
-        role="form" id="login-form">
-            <fieldset>
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label" 
-                        for="email">Email:</label>
-                        <div class="col-lg-10">
-                            <input type="email" class="form-control" 
-                            id ="email" name="email" 
-                            style="width: 250px;" required>
-                        </div>
-                    </div>
-
-    		    
-                    <div class="form-group">
-                        <label class="col-lg-1 control-label" 
-                        for="password">Password:</label>
-                        <div class="col-lg-10">
-                            <input type="password" class="form-control" 
-                            id ="password" name="password" 
-                            style="width: 250px;" required>
-                        </div>
-                    </div>
+    <h3 style="text-align: center">Sign In</h3>
+    
+    <?php /** Login form. */  ?>
+    <form method="post" action="" class="form-horizontal" role="form" 
+    id="login-form">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="email">Email:</label>
+                <div class="col-lg-10">
+                    <input type="email" class="form-control" id ="email" 
+                    name="email" style="width: 250px;" required>
+                </div>
+            </div>
+	    
+            <div class="form-group">
+                <label class="col-lg-1 control-label" for="password">Password:</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" 
+                    id ="password" name="password" style="width: 250px;" required>
+                </div>
+            </div>
     		        
+            <div>
+    	        <input type="submit" value="Sign in" class="btn btn-primary" 
+                name="sign_in" style="width: 322px;"/>			
+            </div>
 
-                    <div>
-    		        <input type="submit" value="Sign in" 
-                        class="btn btn-primary" name="sign_in" 
-                        style="width: 322px;"/>			
-                    </div>
-
-                    <div><br> 
-                        <a href="forgotpassword.php">Forgotten your password?</a>                   
-                    </div>
-            </fieldset>    
-        </form>			
-    </body>
+            <div><br> 
+                <a href="forgotpassword.php">Forgotten your password?</a>                   
+            </div>
+        </fieldset>    
+    </form></body>
 </html>
 
 <?php

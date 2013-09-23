@@ -1,5 +1,5 @@
 <?php
-/*                         C O N F I R M. P H P
+/*                      C O N F I R M. P H P
  * BRL-CAD
  *
  * Copyright (c) 1995-2013 United States Government as represented by
@@ -26,8 +26,7 @@
     include 'include/header.php';
     $status = NULL;
 
-    /** check if the $_GET variables are present */
-    /** quick/simple validation */
+    /** Check if the $_GET variables are present. */
     if (empty($_GET['email']) || empty($_GET['key'])) {
 	$status = 'error';
         echo "We are missing variables. Please double check your email.";
@@ -35,27 +34,27 @@
 		
     if ($status != 'error') {
 
-        /** cleanup the variables */
+        /** Cleanup the variables. */
 	$email = mysql_real_escape_string($_GET['email']);
 	$key = mysql_real_escape_string($_GET['key']);
 	$username = mysql_real_escape_string($_GET['username']);
 
-        /** check if the key is in the database */
+        /** Check if the key is in the database. */
         $check_key = mysql_query("SELECT * FROM `confirm` WHERE 
         `email` = '$email' AND `key` = '$key' LIMIT 1") 
         or die(mysql_error());
 	
 	if (mysql_num_rows($check_key) != 0) {
 				
-            /** get the confirm info */
+            /** Get the results of query. */
 	    $confirm_info = mysql_fetch_assoc($check_key);
 		
-            /** confirm the email and update the users database */
+            /** Confirm the email and update users database. */
             $update_users = mysql_query("UPDATE `users` SET 
             `active` = 1 WHERE `id` = '$confirm_info[userid]' 
             LIMIT 1") or die(mysql_error());
 
-            /** delete the confirm row */
+            /** Delete the confirm row. */
             $delete = mysql_query("DELETE FROM `confirm` WHERE 
             `id` = '$confirm_info[id]' LIMIT 1") or die(mysql_error());
 		
@@ -63,6 +62,8 @@
                 echo "<div id=\"alert-msge\" class=\"alert alert-success\">
                     User has been confirmed. Click following <b>Sign In</b> button to login. Thank-You!
                     </div>";
+
+                /** Create user directory after confirmation. */
                 $createUserDir = "mkdir ../user_accounts/$username";
                 $createObjDir = "mkdir ../user_accounts/$username/obj";
                 shell_exec($createUserDir);
@@ -85,6 +86,7 @@
 	}
 
     }    
+
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            

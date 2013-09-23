@@ -51,6 +51,7 @@
         <div id="login-message" style="text-align: right; padding-right: 10px;">
             <h5>You are logged in as: <?php echo $username; ?> | <a href="accounts/logout.php">Logout</a></h5></div>
         </div>	
+
 <?php
 /*                                                                    
  * Local Variables:                                                   

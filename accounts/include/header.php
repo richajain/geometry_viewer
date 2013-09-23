@@ -4,7 +4,7 @@
 
 	<head>
 
-		<title>Signup</title>
+		<title>BRL-CAD Online Geometry Viewer</title>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<meta http-equiv="imagetoolbar" content="no" />

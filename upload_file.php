@@ -25,7 +25,7 @@
     include 'functions.php';
 
     /** 
-     * Following variable will hold 1, if upload completes, 2  if 
+     * This variable hold 1, if upload completes, 2 if 
      * file already exists, otherwise 0. 
      */
     $uploadComplete = 0;
@@ -34,7 +34,7 @@
         echo "Error: " . $_FILES["file"]["error"] . "<br>";
         $uploadComplete = 0;
     } else if (file_exists("$uploadPath/" . $_FILES["file"]["name"])) {
-    $uploadComplete = 2;
+        $uploadComplete = 2;
     } else {
         move_uploaded_file($_FILES["file"]["tmp_name"],
         "$uploadPath/" . $_FILES["file"]["name"]);
@@ -43,42 +43,42 @@
 
     /** 
      * Holds the names of entities that to be displayed. variable is 
-     * passed to WebGL through header 
+     * passed to WebGL through header. 
      */
     $redirectionData = NULL;
     $objFileName = NULL;
 
-    /** Holds the name of uploaded database file */
+    /** Holds the name of uploaded database file. */
     $dbFileName = $_FILES["file"]["name"];
 
     /** 
      * Database file name is splited into its components, i.e. file 
-     * name and extension and stored in array 
+     * name and extension and stored in array. 
      */
     $dbNameComponents = explode(".", $dbFileName);
     
-    /** Copying the name of file into variable */
+    /** Copy the name of file into variable. */
     $dbFilePreffix = $dbNameComponents[0];
 
     /** 
      * Command that lists the entities of a BRL-CAD database file is 
-     * opied into a variable 
+     * copied into a variable. 
      */
     $cmd = "env /usr/brlcad/dev-7.24.1/bin/mged -c $uploadPath/$dbFileName ls -a 2>&1";
 
-    /** Output of command is stored into variable as string */
+    /** Output of command is stored into variable as string. */
     $out = shell_exec($cmd);
 
     /** 
-     * Spliting the stirng and storing names of entities 
-     * into array 
+     * Split stirng and storing names of entities 
+     * into array. 
      */
     $list = explode(" ", $out);
     
-    /** Counting total number of entities */
+    /** Count total number of entities. */
     $totalEntities = count($list) - 2;
     
-    /** Number of entities to be displayed directly after upload */
+    /** Number of entities to be displayed directly after upload. */
     if ($totalEntities < 5) {
 	$n = $totalEntities;
     } else {
@@ -87,7 +87,7 @@
      
     /** 
      * If file already exits, upload fails and models of entities 
-     * of pre existing file are displayed 
+     * of pre existing file are displayed. 
      */
     if ($uploadComplete == '2') {
         for ($i = 0; $i < $n; $i++) {
@@ -95,7 +95,7 @@
                 $i = $i + 1;
                 $n = $n + 1;
 
-                /** this code has chances to be removed in future. */
+                /** This code has chances to be removed in future. */
 	        $objFileName = $objPath.$dbFilePreffix."_".$list[$i].".obj";
 	        $redirectionData = $redirectionData."|".$objFileName;
 	    } else {
@@ -118,6 +118,7 @@
         }
         header('Location: model_display.php?entitiesString='.urlencode($out).'&dbFileName='.urlencode($dbFileName));
     }
+
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            

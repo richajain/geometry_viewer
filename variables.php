@@ -22,18 +22,17 @@
  *
  */
 
-/** Path of directory where uploaded file get stored */
-$uploadPath = "user_accounts/$username";
+    /** Path of directory where uploaded file get stored. */
+    $uploadPath = "user_accounts/$username";
 
-/** Path of directory where OBJ files stored */
-$objPath = "user_accounts/$username/obj";
+    /** Path of directory where OBJ files stored. */
+    $objPath = "user_accounts/$username/obj";
 
-$title = "BRL-CAD Online Geometry Viewer";
-
-$siteUrl = 'http://localhost/~harmanpreet/';
-$subject = 'Confirmation Link';
-$senderEmail = 'geometryviewer@gmail.com';
-$senderName = 'Online Geometry Viewer';
+    $title = "BRL-CAD Online Geometry Viewer";
+    $siteUrl = 'http://localhost/~harmanpreet/';
+    $subject = 'Confirmation Link';
+    $senderEmail = 'geometryviewer@gmail.com';
+    $senderName = 'Online Geometry Viewer';
 
 /*                                                                    
  * Local Variables:                                                   
