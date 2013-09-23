@@ -39,8 +39,11 @@
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="accounts/include/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/pace/themes/pace-theme-minimal.css" rel="stylesheet" />
+        <script src="js/pace.js"></script>                              
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery-1.10.2.min.js"></script>
+
     </head>
 
     <body>

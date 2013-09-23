@@ -29,7 +29,7 @@
     $dbFileName = $_POST['db'];
     $entity = $_POST['en'];
 
-    create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath);
+    create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath, $normTol);
     
 /*                                                                    
  * Local Variables:                                                   

@@ -6,7 +6,7 @@ native CAD (.g format) file on browser. ThreeJS (webGL) is used at
 backend to visualize geometry. The project is developed exclusively 
 to facilitate BRL-CAD users to view and share their models.
 
-Currently in initial stage, the project expected to have more 
+Currently in initial stage, project aimed to have more 
 advanced features in near future.
 
 For any comments / suggestions or feedback, please contact at 

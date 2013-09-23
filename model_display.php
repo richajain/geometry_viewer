@@ -30,14 +30,18 @@ include 'config.php';
 <!doctype html>
 <html lang="en">
     <head>
+
     <title><?php echo $title; ?></title>
 	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, 
         user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel=stylesheet href="css/base.css"/>
-	<link rel=stylesheet href="css/bootstrap.css"/>
+        <link rel=stylesheet href="css/bootstrap.css"/>
+        <link href="css/pace/themes/pace-theme-minimal.css" rel="stylesheet" />
+       
     </head>
     <body>
+        <script src="js/pace.js"></script>                              
 	<script src="js/three.min.js"></script>
 	<script src="js/Detector.js"></script>
 	<script src="js/Stats.js"></script>
@@ -51,7 +55,7 @@ include 'config.php';
         <div id="top-bar" class="effect8">
 
             <div>
-                <img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png">
+               <a href="upload.php"><img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png"></a>
             </div>
             <div id="logo-text">BRL-CAD</div>
             <div id="slogan">Geometry Viewer</div>

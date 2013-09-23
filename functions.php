@@ -50,11 +50,11 @@
      * 
      * Create OBJ files.  
      */
-    function create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath)
+    function create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath, $normTol)
     {
         $success = "$entity.obj";
         $fail = "fail";
-        $gobj = "$gobjPath -n 10 -o $objPath/$entity.obj $uploadPath/$dbFileName $entity";
+        $gobj = "$gobjPath -n $normTol -o $objPath/$entity.obj $uploadPath/$dbFileName $entity";
         if (!shell_exec($gobj)) {
             echo $fail;
         } else {

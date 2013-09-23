@@ -57,6 +57,8 @@
      */
     $gobjPath = '/usr/brlcad/dev-7.24.1/bin/g-obj';
 
+    $normTol = '10';
+
 
     /** MySQL credentials. */
 
