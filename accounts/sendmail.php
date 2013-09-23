@@ -34,7 +34,7 @@
 <?php
     include 'include/db.php';
     include 'include/header.php';
-    include '../variables.php';
+    include '../config.php';
 
     /** check if the form has been submitted */
     if (isset($_POST['signup'])) {
@@ -98,14 +98,14 @@
 
                         /** Mail Transport */
                         $transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
-                        ->setUsername('yourGmailAccount@gmail.com')
-                        ->setPassword('xxxxxxxx');
+                        ->setUsername($senderEmail)
+                        ->setPassword($senderPassword);
 
                         /** Mailer */
                         $mailer = Swift_Mailer::newInstance($transport);
 
                         /** Create a message. */
-                        $message = Swift_Message::newInstance($subject)
+                        $message = Swift_Message::newInstance($newAccountSubject)
                         ->setFrom(array($senderEmail => $senderName))
                         ->setTo(array($email => $username))
                         ->setBody('

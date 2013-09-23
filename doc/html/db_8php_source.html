@@ -86,8 +86,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">db.php</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*                         C O N F I G . P H P</span></div>
+<a href="db_8php.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*                         D B . P H P</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * BRL-CAD</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Copyright (c) 1995-2013 United States Government as represented by</span></div>
@@ -106,14 +106,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * License along with this file; see the file named COPYING for more</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * information.</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">/* connect to the database */</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    mysql_connect(<span class="stringliteral">&#39;localhost&#39;</span>, <span class="stringliteral">&#39;mysql_username&#39;</span>, <span class="stringliteral">&#39;password&#39;</span>) or die(&quot;Unable to connect to the database, please make sure your MySQL username and / or password is correct!&quot;);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    mysql_select_db(&#39;database_name&#39;) or die(&quot;Unable to find database table ($table).&quot;);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;?&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    include <span class="stringliteral">&#39;../config.php&#39;</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="db_8php.html#a3ad132d85e0af7f84f58fc6d8439ad1b">   28</a></span>&#160;    mysql_connect(<span class="stringliteral">&#39;localhost&#39;</span>, <a class="code" href="config_8php.html#a568794d7d473378056ef7746cfdffa67">$mysqlUsername</a>, $mysqlPassword) or die(&quot;Unable to connect to the database, please make sure your MySQL username and / or password is <a class="code" href="db_8php.html#a3ad132d85e0af7f84f58fc6d8439ad1b">correct</a>!&quot;);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    mysql_select_db($mysqlDatabase) or die(&quot;&lt;div <span class="keywordtype">id</span>=\&quot;alert-msge\&quot; class=\&quot;alert alert-danger\&quot;&gt;Unable to connect to database.&lt;/div&gt;&quot;);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;?&gt;</div>
+<div class="ttc" id="config_8php_html_a568794d7d473378056ef7746cfdffa67"><div class="ttname"><a href="config_8php.html#a568794d7d473378056ef7746cfdffa67">$mysqlUsername</a></div><div class="ttdeci">$mysqlUsername</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00063">config.php:63</a></div></div>
+<div class="ttc" id="db_8php_html_a3ad132d85e0af7f84f58fc6d8439ad1b"><div class="ttname"><a href="db_8php.html#a3ad132d85e0af7f84f58fc6d8439ad1b">correct</a></div><div class="ttdeci">mysql_connect('localhost', $mysqlUsername, $mysqlPassword) or die(&quot;Unable to connect to the database please make sure your MySQL username and or password is correct</div><div class="ttdef"><b>Definition:</b> <a href="db_8php_source.html#l00028">db.php:28</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 23 2013 15:28:17 for BRL-CAD Online Geometry Viewer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 23 2013 19:44:39 for BRL-CAD Online Geometry Viewer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

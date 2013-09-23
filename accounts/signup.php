@@ -78,6 +78,10 @@
                class="btn btn-primary" name="signup" 
                style="width: 322px;"/>			
            </div>
+
+            <div><br> 
+                <a href="login.php">Already have an account?</a>                   
+            </div>
        </fieldset>    
    </form>			
 </html>

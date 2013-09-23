@@ -27,13 +27,7 @@
 
     /** Path of directory where OBJ files stored. */
     $objPath = "user_accounts/$username/obj";
-
-    $title = "BRL-CAD Online Geometry Viewer";
-    $siteUrl = 'http://localhost/~harmanpreet/';
-    $subject = 'Confirmation Link';
-    $senderEmail = 'geometryviewer@gmail.com';
-    $senderName = 'Online Geometry Viewer';
-
+ 
 /*                                                                    
  * Local Variables:                                                   
  * mode: PHP                                                            

@@ -22,7 +22,7 @@
  *
  */
     include 'accounts/auth.php';
-    include 'variables.php';
+//    include 'variables.php';
 ?>
 
 <!DOCTYPE html>

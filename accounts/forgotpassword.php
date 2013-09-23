@@ -30,7 +30,7 @@
 <?php 
     include 'include/header.php';
     include 'include/db.php';
-    include '../variables.php';
+    include '../config.php';
 
     /** Swift Mailer Library. */
     include 'include/swift/swift_required.php';
@@ -83,19 +83,19 @@
      * TODO: This code should be in separate file of function.
      */
     $transport = Swift_SmtpTransport::newInstance('ssl://smtp.gmail.com', 465)
-    ->setUsername('yourGmailAccount@gmail.com')
-    ->setPassword('xxxxxxxx');
+    ->setUsername($senderEmail)
+    ->setPassword($senderPassword);
 
     /** Mailer */
     $mailer = Swift_Mailer::newInstance($transport);
 
     /** Create a message */
-    $message = Swift_Message::newInstance('Password Reset')
+    $message = Swift_Message::newInstance($passwordResetSubject)
     ->setFrom(array($senderEmail => $senderName))
     ->setTo(array($email => $email))
     ->setBody('Hi '.$email.'!
     <br><br>Please click the following link to reset your password:<br><br>
-    <a href="http://localhost/~harmanpreet/geometry_viewer/accounts/reset.php?token='.$token.'">http://localhost/~harmanpreet/geometry_viewer/accounts/reset.php?token='.$token.' </a><br><br>Have a nice day!', 'text/html');
+    <a href="'.$siteUrl.'geometry_viewer/accounts/reset.php?token='.$token.'">'.$siteUrl.'geometry_viewer/accounts/reset.php?token='.$token.' </a><br><br>Have a nice day!', 'text/html');
 
     /** Send email */
     if ($mailer->send($message)) {			

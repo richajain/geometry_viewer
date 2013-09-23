@@ -24,11 +24,12 @@
 
     include 'accounts/auth.php';
     include 'functions.php';
-    
+    include 'config.php';
+
     $dbFileName = $_POST['db'];
     $entity = $_POST['en'];
 
-    create_obj($dbFileName, $entity, $uploadPath, $objPath);
+    create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath);
     
 /*                                                                    
  * Local Variables:                                                   

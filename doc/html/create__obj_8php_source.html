@@ -104,28 +104,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    include <span class="stringliteral">&#39;accounts/auth.php&#39;</span>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    include <span class="stringliteral">&#39;functions.php&#39;</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a> = $_POST[<span class="stringliteral">&#39;db&#39;</span>];</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    $entity = $_POST[<span class="stringliteral">&#39;en&#39;</span>];</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="functions_8php.html#a850d987103618218dee07e73937a96f6">create_obj</a>(<a class="code" href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a>, $entity, <a class="code" href="variables_8php.html#a9b2aca73038168dc85a3fb6d6af948a8">$uploadPath</a>, <a class="code" href="variables_8php.html#a107cb3732c3eb625a67c9896596c6c74">$objPath</a>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/*                                                                    </span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * Local Variables:                                                   </span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * mode: PHP                                                            </span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * tab-width: 8</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * End:                                                               </span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * ex: shiftwidth=4 tabstop=8                                         </span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;?&gt;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    include <span class="stringliteral">&#39;config.php&#39;</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a> = $_POST[<span class="stringliteral">&#39;db&#39;</span>];</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    $entity = $_POST[<span class="stringliteral">&#39;en&#39;</span>];</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="functions_8php.html#a9a81f0732c29be4793a566f72ea08cf5">create_obj</a>(<a class="code" href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a>, $entity, <a class="code" href="variables_8php.html#a9b2aca73038168dc85a3fb6d6af948a8">$uploadPath</a>, <a class="code" href="variables_8php.html#a107cb3732c3eb625a67c9896596c6c74">$objPath</a>, <a class="code" href="config_8php.html#ad0b8e5e5771eb951767f92eae6b5fd61">$gobjPath</a>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/*                                                                    </span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * Local Variables:                                                   </span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * mode: PHP                                                            </span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * tab-width: 8</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * End:                                                               </span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * ex: shiftwidth=4 tabstop=8                                         </span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;?&gt;</div>
 <div class="ttc" id="variables_8php_html_a9b2aca73038168dc85a3fb6d6af948a8"><div class="ttname"><a href="variables_8php.html#a9b2aca73038168dc85a3fb6d6af948a8">$uploadPath</a></div><div class="ttdeci">$uploadPath</div><div class="ttdef"><b>Definition:</b> <a href="variables_8php_source.html#l00026">variables.php:26</a></div></div>
-<div class="ttc" id="upload__file_8php_html_ab20da318c11da52be7a0bd751aa80ba2"><div class="ttname"><a href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a></div><div class="ttdeci">$dbFileName</div><div class="ttdef"><b>Definition:</b> <a href="upload__file_8php_source.html#l00052">upload_file.php:52</a></div></div>
-<div class="ttc" id="functions_8php_html_a850d987103618218dee07e73937a96f6"><div class="ttname"><a href="functions_8php.html#a850d987103618218dee07e73937a96f6">create_obj</a></div><div class="ttdeci">create_obj($dbFileName, $entity, $uploadPath, $objPath)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8php_source.html#l00052">functions.php:52</a></div></div>
+<div class="ttc" id="upload__file_8php_html_ab20da318c11da52be7a0bd751aa80ba2"><div class="ttname"><a href="upload__file_8php.html#ab20da318c11da52be7a0bd751aa80ba2">$dbFileName</a></div><div class="ttdeci">$dbFileName</div><div class="ttdef"><b>Definition:</b> <a href="upload__file_8php_source.html#l00053">upload_file.php:53</a></div></div>
+<div class="ttc" id="functions_8php_html_a9a81f0732c29be4793a566f72ea08cf5"><div class="ttname"><a href="functions_8php.html#a9a81f0732c29be4793a566f72ea08cf5">create_obj</a></div><div class="ttdeci">create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath)</div><div class="ttdef"><b>Definition:</b> <a href="functions_8php_source.html#l00053">functions.php:53</a></div></div>
 <div class="ttc" id="variables_8php_html_a107cb3732c3eb625a67c9896596c6c74"><div class="ttname"><a href="variables_8php.html#a107cb3732c3eb625a67c9896596c6c74">$objPath</a></div><div class="ttdeci">$objPath</div><div class="ttdef"><b>Definition:</b> <a href="variables_8php_source.html#l00029">variables.php:29</a></div></div>
+<div class="ttc" id="config_8php_html_ad0b8e5e5771eb951767f92eae6b5fd61"><div class="ttname"><a href="config_8php.html#ad0b8e5e5771eb951767f92eae6b5fd61">$gobjPath</a></div><div class="ttdeci">$gobjPath</div><div class="ttdef"><b>Definition:</b> <a href="config_8php_source.html#l00058">config.php:58</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 23 2013 15:28:17 for BRL-CAD Online Geometry Viewer by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 23 2013 19:44:39 for BRL-CAD Online Geometry Viewer by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

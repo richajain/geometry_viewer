@@ -1,5 +1,5 @@
 <?php
-/*                         C O N F I G . P H P
+/*                         D B . P H P
  * BRL-CAD
  *
  * Copyright (c) 1995-2013 United States Government as represented by
@@ -18,11 +18,13 @@
  * License along with this file; see the file named COPYING for more
  * information.
  */
-/** @file geometry_viewer/accounts/inc/php/config.php
+/** @file geometry_viewer/accounts/include/db.php
  *
  */
 
-    /* connect to the database */
-    mysql_connect('localhost', 'mysql_username', 'password') or die("Unable to connect to the database, please make sure your MySQL username and / or password is correct!");
-    mysql_select_db('database_name') or die("Unable to find database table ($table).");
+    include '../config.php';
+
+    /** Connect to the database. */
+    mysql_connect('localhost', $mysqlUsername, $mysqlPassword) or die("Unable to connect to the database, please make sure your MySQL username and / or password is correct!");
+    mysql_select_db($mysqlDatabase) or die("<div id=\"alert-msge\" class=\"alert alert-danger\">Unable to connect to database.</div>");
 ?>

@@ -23,6 +23,7 @@
  */
 
     include 'variables.php';
+    include 'config.php';
 
     /** 
      * D I S P L A Y _ L I S T
@@ -49,11 +50,11 @@
      * 
      * Create OBJ files.  
      */
-    function create_obj($dbFileName, $entity, $uploadPath, $objPath)
+    function create_obj($dbFileName, $entity, $uploadPath, $objPath, $gobjPath)
     {
         $success = "$entity.obj";
         $fail = "fail";
-        $gobj = "/usr/brlcad/dev-7.24.1/bin/g-obj -n 10 -o $objPath/$entity.obj $uploadPath/$dbFileName $entity";
+        $gobj = "$gobjPath -n 10 -o $objPath/$entity.obj $uploadPath/$dbFileName $entity";
         if (!shell_exec($gobj)) {
             echo $fail;
         } else {

@@ -23,6 +23,7 @@
  */
     include 'accounts/auth.php';
     include 'functions.php';
+    include 'config.php';
 
     /** 
      * This variable hold 1, if upload completes, 2 if 
@@ -64,7 +65,7 @@
      * Command that lists the entities of a BRL-CAD database file is 
      * copied into a variable. 
      */
-    $cmd = "env /usr/brlcad/dev-7.24.1/bin/mged -c $uploadPath/$dbFileName ls -a 2>&1";
+    $cmd = "$mgedPath -c $uploadPath/$dbFileName ls -a 2>&1";
 
     /** Output of command is stored into variable as string. */
     $out = shell_exec($cmd);

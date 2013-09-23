@@ -24,12 +24,13 @@
 
 include 'accounts/auth.php';
 include 'variables.php';
+include 'config.php';
 ?>
 
 <!doctype html>
 <html lang="en">
     <head>
-        <title>BRL-CAD Online Geometry Viewer</title>
+    <title><?php echo $title; ?></title>
 	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, 
         user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -258,7 +259,7 @@ include 'variables.php';
                  * response from create_obj.php and passing it 
                  * to single_obj)loader() to load it to ThreeJS scene.
                  */
-                $.post('create_obj.php', {db: dbFileName, en: entity}, function(data) {
+                $.post('create_obj.php', {db: dbFileName, en: entity}, function(data){ 
                     if (data == entity+".obj"){               
                         single_obj_loader(data);
                     }                                     

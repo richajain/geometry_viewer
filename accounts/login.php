@@ -81,9 +81,16 @@
                     email ID and / or password not found.
                     </div>";
 
+                echo "<button type=\"submit\" class=\"btn btn-primary\" id=\"alert-msge\" 
+                    name=\"signup\" onClick=\"window.location='signup.php'\">
+                    Sign Up </button>";
+
+
+
                 echo "<button type=\"submit\" class=\"btn btn-success\" id=\"alert-msge\" 
                     name=\"sign_in\" onClick=\"window.location='login.php'\">
                     Sign In </button>";
+
 
                 exit();
             }
@@ -119,8 +126,11 @@
             </div>
 
             <div><br> 
-                <a href="forgotpassword.php">Forgotten your password?</a>                   
+                <a href="forgotpassword.php">Forgotten your password?</a><br><br>
+                <a href="signup.php">New user? Create an account.</a>
             </div>
+
+            
         </fieldset>    
     </form></body>
 </html>

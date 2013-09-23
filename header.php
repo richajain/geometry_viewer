@@ -45,7 +45,7 @@
 
     <body>
 	<div id="top-bar" class="effect8">
-        <div><img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png"></div>
+        <div><a href="upload.php"><img id="top-bar-logo" src="images/BRL-CAD_gear_logo_256.png"></a></div>
         <div id="logo-text">BRL-CAD</div>
         <div id="slogan">Geometry Viewer</div>
         <div id="login-message" style="text-align: right; padding-right: 10px;">

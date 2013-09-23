@@ -20,7 +20,7 @@ if(\$\-\_\-\-F\-I\-L\-E\-S\mbox{[}\char`\"{}file\char`\"{}\mbox{]}\mbox{[}\char`
 \item 
 \hyperlink{upload__file_8php_ad2ec2b4b4d7f2f14d90fa0a87387c143}{\$db\-File\-Preffix} = \$db\-Name\-Components\mbox{[}0\mbox{]}
 \item 
-\hyperlink{upload__file_8php_a9c87033fa49b61f753e3c263da5edeab}{\$cmd} = \char`\"{}env /usr/brlcad/dev-\/7.\-24.\-1/bin/mged -\/c \$upload\-Path/\$db\-File\-Name ls -\/a 2$>$\&1\char`\"{}
+\hyperlink{upload__file_8php_a9c87033fa49b61f753e3c263da5edeab}{\$cmd} = \char`\"{}\$mged\-Path -\/c \$upload\-Path/\$db\-File\-Name ls -\/a 2$>$\&1\char`\"{}
 \item 
 \hyperlink{upload__file_8php_a48cb304902320d173a4eaa41543327b9}{\$out} = shell\-\_\-exec(\$cmd)
 \item 
@@ -33,66 +33,66 @@ if(\$\-\_\-\-F\-I\-L\-E\-S\mbox{[}\char`\"{}file\char`\"{}\mbox{]}\mbox{[}\char`
 \subsection{Variable Documentation}
 \hypertarget{upload__file_8php_a9c87033fa49b61f753e3c263da5edeab}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$cmd@{\$cmd}}
 \index{\$cmd@{\$cmd}!upload_file.php@{upload\-\_\-file.\-php}}
-\subsubsection[{\$cmd}]{\setlength{\rightskip}{0pt plus 5cm}\$cmd = \char`\"{}env /usr/brlcad/dev-\/7.\-24.\-1/bin/mged -\/c \$upload\-Path/\$db\-File\-Name ls -\/a 2$>$\&1\char`\"{}}}\label{upload__file_8php_a9c87033fa49b61f753e3c263da5edeab}
+\subsubsection[{\$cmd}]{\setlength{\rightskip}{0pt plus 5cm}\$cmd = \char`\"{}\$mged\-Path -\/c \$upload\-Path/\$db\-File\-Name ls -\/a 2$>$\&1\char`\"{}}}\label{upload__file_8php_a9c87033fa49b61f753e3c263da5edeab}
 Command that lists the entities of a B\-R\-L-\/\-C\-A\-D database file is copied into a variable. 
 
-Definition at line 67 of file upload\-\_\-file.\-php.
+Definition at line 68 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_ab20da318c11da52be7a0bd751aa80ba2}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$db\-File\-Name@{\$db\-File\-Name}}
 \index{\$db\-File\-Name@{\$db\-File\-Name}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$db\-File\-Name}]{\setlength{\rightskip}{0pt plus 5cm}\$db\-File\-Name = \$\-\_\-\-F\-I\-L\-E\-S\mbox{[}\char`\"{}file\char`\"{}\mbox{]}\mbox{[}\char`\"{}name\char`\"{}\mbox{]}}}\label{upload__file_8php_ab20da318c11da52be7a0bd751aa80ba2}
 Holds the name of uploaded database file. 
 
-Definition at line 52 of file upload\-\_\-file.\-php.
+Definition at line 53 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_ad2ec2b4b4d7f2f14d90fa0a87387c143}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$db\-File\-Preffix@{\$db\-File\-Preffix}}
 \index{\$db\-File\-Preffix@{\$db\-File\-Preffix}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$db\-File\-Preffix}]{\setlength{\rightskip}{0pt plus 5cm}\$db\-File\-Preffix = \$db\-Name\-Components\mbox{[}0\mbox{]}}}\label{upload__file_8php_ad2ec2b4b4d7f2f14d90fa0a87387c143}
 Copy the name of file into variable. 
 
-Definition at line 61 of file upload\-\_\-file.\-php.
+Definition at line 62 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a82064fc59286d59cc519da100ff37a03}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$db\-Name\-Components@{\$db\-Name\-Components}}
 \index{\$db\-Name\-Components@{\$db\-Name\-Components}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$db\-Name\-Components}]{\setlength{\rightskip}{0pt plus 5cm}\$db\-Name\-Components = explode(\char`\"{}.\char`\"{}, \$db\-File\-Name)}}\label{upload__file_8php_a82064fc59286d59cc519da100ff37a03}
 Database file name is splited into its components, i.\-e. file name and extension and stored in array. 
 
-Definition at line 58 of file upload\-\_\-file.\-php.
+Definition at line 59 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a358b00350db3d8f227d500337cc437af}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$list@{\$list}}
 \index{\$list@{\$list}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$list}]{\setlength{\rightskip}{0pt plus 5cm}\$list = explode(\char`\"{} \char`\"{}, \$out)}}\label{upload__file_8php_a358b00350db3d8f227d500337cc437af}
 Split stirng and storing names of entities into array. 
 
-Definition at line 76 of file upload\-\_\-file.\-php.
+Definition at line 77 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a48cb304902320d173a4eaa41543327b9}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$out@{\$out}}
 \index{\$out@{\$out}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$out}]{\setlength{\rightskip}{0pt plus 5cm}\$out = shell\-\_\-exec(\$cmd)}}\label{upload__file_8php_a48cb304902320d173a4eaa41543327b9}
 Output of command is stored into variable as string. 
 
-Definition at line 70 of file upload\-\_\-file.\-php.
+Definition at line 71 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a4bfc4abb42c1a5571cc275eb8dc0de4c}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$redirection\-Data@{\$redirection\-Data}}
 \index{\$redirection\-Data@{\$redirection\-Data}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$redirection\-Data}]{\setlength{\rightskip}{0pt plus 5cm}\$redirection\-Data = N\-U\-L\-L}}\label{upload__file_8php_a4bfc4abb42c1a5571cc275eb8dc0de4c}
 Holds the names of entities that to be displayed. variable is passed to Web\-G\-L through header. 
 
-Definition at line 48 of file upload\-\_\-file.\-php.
+Definition at line 49 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a4176312f6451cbbe1bd9d40253527e1d}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$total\-Entities@{\$total\-Entities}}
 \index{\$total\-Entities@{\$total\-Entities}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$total\-Entities}]{\setlength{\rightskip}{0pt plus 5cm}\$total\-Entities = count(\$list) -\/ 2}}\label{upload__file_8php_a4176312f6451cbbe1bd9d40253527e1d}
 Count total number of entities. 
 
-Definition at line 79 of file upload\-\_\-file.\-php.
+Definition at line 80 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a1f7d071bedb8673aa713baddd14e2ed1}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!\$upload\-Complete@{\$upload\-Complete}}
 \index{\$upload\-Complete@{\$upload\-Complete}!upload_file.php@{upload\-\_\-file.\-php}}
 \subsubsection[{\$upload\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}\$upload\-Complete = 0}}\label{upload__file_8php_a1f7d071bedb8673aa713baddd14e2ed1}
 This variable hold 1, if upload completes, 2 if file already exists, otherwise 0. 
 
-Definition at line 31 of file upload\-\_\-file.\-php.
+Definition at line 32 of file upload\-\_\-file.\-php.
 
 \hypertarget{upload__file_8php_a8991bab36794a3fd6413c85da0a3516b}{\index{upload\-\_\-file.\-php@{upload\-\_\-file.\-php}!else@{else}}
 \index{else@{else}!upload_file.php@{upload\-\_\-file.\-php}}
@@ -105,5 +105,5 @@ Definition at line 31 of file upload\-\_\-file.\-php.
 \end{DoxyCode}
 Number of entities to be displayed directly after upload. 
 
-Definition at line 38 of file upload\-\_\-file.\-php.
+Definition at line 39 of file upload\-\_\-file.\-php.
 

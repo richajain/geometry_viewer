@@ -60,7 +60,7 @@
 		
 	    if ($update_users) {				
                 echo "<div id=\"alert-msge\" class=\"alert alert-success\">
-                    User has been confirmed. Click following <b>Sign In</b> button to login. Thank-You!
+                    Email address <b>$email</b> has been confirmed. Click following <b>Sign In</b> button to login. Thank-You!
                     </div>";
 
                 /** Create user directory after confirmation. */
